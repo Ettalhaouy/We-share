@@ -41,8 +41,6 @@ img{ width: 200px; height: 200px;}
   z-index: 2;
 }
 .form-signin-signup input[type="text"] {
-  display: inline-block;
-  width:147px;
   margin-bottom: 10px;
   border-radius: 5px;
 

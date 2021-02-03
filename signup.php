@@ -43,45 +43,10 @@ if (!empty($_POST))
 }
 ?>
 
-<!doctype html>
-<html lang="en">
-  <head>
-    <link rel="apple-touch-icon" sizes="180x180" href="assets/images/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon-16x16.png">
-    <link rel="mask-icon" href="assets/images/safari-pinned-tab.svg" color="#5bbad5">
-    <meta name="msapplication-TileColor" content="#da532c">
-    <meta name="theme-color" content="#ffffff">
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="Noureddine Ettalhaouy, Ismail Chakrane , Faysal Belkhchicha ">
+<?php include 'layouts/login_header.html';?>
     <title>S'inscrire | We-Share</title>
-
-    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/sign-in/">
-
-    <!-- Bootstrap core CSS -->
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/css/bootstrap.min.css" integrity="sha384-DhY6onE6f3zzKbjUPRc2hOzGAdEf4/Dz+WJwBvEYL/lkkIsI3ihufq9hk9K4lVoK" crossorigin="anonymous">
-
-    <style>
-      .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        user-select: none;
-      }
-
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
-        }
-      }
-    </style>
-
-    <!-- Custom styles for this template -->
-    <link href="assets/styles/signin&signup.css" rel="stylesheet">
-  </head>
+</head>
+   
   <body class="text-center">
     
 <main class="form-signin-signup">

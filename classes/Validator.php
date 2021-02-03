@@ -54,26 +54,52 @@ class Validator
         return $this->errors;
     }
 
-    public function userValid($email,$password,$db)
+    public function accountValid($email,$password,$db,$accountType)
     {
-      if (!empty([$this->getField($email)]) && !empty([$this->getField($password)]) ) {
 
-        $email = $this->getField($email);
+    if($accountType == "1"){
+       
+        if (!empty([$this->getField($email)]) && !empty([$this->getField($password)]) ) {
 
-        $user = $db->query("SELECT * FROM users WHERE (email = :email) AND confirmed_at IS NOT NULL",['email' => $email])->fetch();
-      }
+            $email = $this->getField($email);
+           
 
-      if( password_verify($this->getField($password), $user->password)){
+            $account = $db->query("SELECT * FROM users WHERE (email = :email)",['email' => $email])->fetch();
+        }
 
-        $res = $user;
-    }
-    else {
 
-        $res = false;
-    }
+        if(password_verify($this->getField($password), $account->password)){
 
-    return $res;
+            $res = $account;
+        }
+        else {
+
+            $res = false;
+        }
+       
+        return $res;
+
+  }else{
+
+        if (!empty([$this->getField($email)]) && !empty([$this->getField($password)]) ) {
+
+            $email = $this->getField($email);
+
+            $account = $db->query("SELECT * FROM organisations WHERE (email = :email)",['email' => $email])->fetch();
+        }
+
+        if( password_verify($this->getField($password), $account->password)){
+
+            $res = $account;
+        }
+        else {
+
+            $res = false;
+        }
+
+        return $res;
 
   }
 
+}
 }

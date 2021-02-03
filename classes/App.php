@@ -9,7 +9,7 @@ class App
   {
     if (!self::$db) {
       // it depends on your OS 
-      self::$db = new Database ('root','','mcharty');
+      self::$db = new Database ('root','','weshare');
     }
     return self::$db;
   }

@@ -33,7 +33,7 @@ if (!empty($_POST))
           $Auth->register($db,$_POST['email'],$_POST['login'],$_POST['password'],"organisations");
 
           Session::getInstance()->setFlash('success','Votre compte est bien créer');
-          App::redirect('signin.php');
+          App::redirect('account_created.html');
         }
         else
         {

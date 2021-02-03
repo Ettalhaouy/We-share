@@ -35,7 +35,6 @@ if (!empty($_POST)){
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="Noureddine Ettalhaouy, Ismail Chakrane , Faysal Belkhchicha ">
-    <meta name="generator" content="Hugo 0.79.0">
     <title>Se connecter | We-Share</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/sign-in/">

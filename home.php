@@ -1,21 +1,43 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <link rel="apple-touch-icon" sizes="180x180" href="assets/images/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon-16x16.png">
-    <link rel="mask-icon" href="assets/images/safari-pinned-tab.svg" color="#5bbad5">
-    <meta name="msapplication-TileColor" content="#da532c">
-    <meta name="theme-color" content="#ffffff">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Accueil | We-Share</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/css/bootstrap.min.css" integrity="sha384-DhY6onE6f3zzKbjUPRc2hOzGAdEf4/Dz+WJwBvEYL/lkkIsI3ihufq9hk9K4lVoK" crossorigin="anonymous">
-</head>
-<body>
+<?php
+require 'inc/Autoloader.php';
+
+
+  if (empty(Session::getInstance()->read('id'))) {
+  Session::getInstance()->setFlash('danger','Vous devez etre connecté');
+  App::redirect('signin.php');
+}
+
+$type_account = Session::getInstance()->read('genre');
+
+if($type_account == "1"){
+  $session_id = Session::getInstance()->read('id');
+  $db = App::getDatabase();
+  $account = $db->query('SELECT login FROM users  WHERE id = ?',[$_SESSION['id']])->fetch();
+}else{
+    $session_id = Session::getInstance()->read('id');
+    $db = App::getDatabase();
+    $account = $db->query('SELECT login FROM organisations  WHERE id = ?',[$_SESSION['id']])->fetch();
+}
+
+$advertisements = $db->query('SELECT COUNT(*) as nb FROM advertisements',[])->fetch();
+$nb_ads = (int)$advertisements->nb;
+
+?>
+<?php include 'layouts/private_header.html'; ?>
+
+    <!-- flash controle -->
+    <?php if (Session::getInstance()->hasFlashes()): ?>
+     <?php foreach (Session::getInstance()->getFlashes() as $type => $message): ?>
+       <div class="alert alert-<?=$type; ?>"><li><?=$message; ?> </li></div>
+     <?php endforeach; ?>
+   <?php endif;?>
+
+<?php  if ($nb_ads > 0):?>
+
     <!-- Page Content -->
-  <div class="container">
+  <div class="container" style="margin-top: 3%;">
     <div class="row justify-content-around">
+
 <?php 
 
     for($i = 0; $i < 4; $i++) {
@@ -68,6 +90,19 @@
     
     </div>
   </div>
+
+<?php  else: ?>
+  <style>
+
+    .display-3{
+      margin: 15%;
+      
+    }
+  </style>
+  <center>
+  <h1 class="display-3">No content yet !</h1>
+  <center>
+<?php  endif; ?>
 
 </body>
 </html>

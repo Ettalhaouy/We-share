@@ -10,13 +10,15 @@ if (!empty($_POST)){
   {
 
     $user = $validator->accountValid('email','password',$db,$_POST['accountType']);
+    Session::getInstance()->write('genre', $_POST['accountType']);
     Session::getInstance()->write('auth', $user);
     Session::getInstance()->write('id', $user->id);
     Session::getInstance()->setFlash('success','Bien connecté');
-    //App::redirect('test.php');
+    App::redirect('home.php');
   }
   else{
     Session::getInstance()->setFlash('danger','Email ou mot de passe incorrecte');
+    App::redirect('signin.php');
   }
 }
 
@@ -31,6 +33,27 @@ if (!empty($_POST)){
   <form action="" method="POST">
     <img class="mb-4 rounded-circle" src="assets/images/We-Share-logo.png" alt="" width="72" height="57">
     <h1 class="h3 mb-3 fw-normal"> Se connecter </h1>
+
+    <!-- errors controle -->
+    <?php  if (!empty($errors)):?>
+      <div class="alert alert-danger">
+        <p>Vous n'avez pas uploader les fichiers  correctement</p>
+        <?php foreach ($errors as $error): ?>
+          <ul>
+            <li><?= $error; ?></li>
+          <?php endforeach; ?>
+          </ul>
+      </div>
+    <?php endif; ?>
+
+    <!-- flash controle -->
+    <?php if (Session::getInstance()->hasFlashes()): ?>
+     <?php foreach (Session::getInstance()->getFlashes() as $type => $message): ?>
+       <div class="alert alert-<?=$type; ?>"><li><?=$message; ?> </li></div>
+     <?php endforeach; ?>
+   <?php endif;?>
+
+
     <label for="inputEmail" class="visually-hidden">Adresse e-mail</label>
     <input type="email" id="inputEmail" name="email" class="form-control" placeholder="Adresse e-mail" required autofocus>
     

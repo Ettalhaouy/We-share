@@ -33,7 +33,7 @@ if (!empty($_POST))
           $Auth->register($db,$_POST['email'],$_POST['login'],$_POST['password'],"organisations");
 
           Session::getInstance()->setFlash('success','Votre compte est bien créer');
-          App::redirect('account_created.html');
+          App::redirect('layouts/account_created.html');
         }
         else
         {
@@ -53,7 +53,26 @@ if (!empty($_POST))
   <form action="" method="POST">
     <img class="mb-4 rounded-circle" src="assets/images/We-Share-logo.png" alt="" width="72" height="57">
     <h1 class="h3 mb-3 fw-normal"> S'inscrire </h1>
-   
+
+        <!-- errors controle -->
+        <?php  if (!empty($errors)):?>
+      <div class="alert alert-danger">
+        <p>Vous n'avez pas remplissez les données correctement: </p>
+        <?php foreach ($errors as $error): ?>
+          <ul>
+            <li><?= $error; ?></li>
+          <?php endforeach; ?>
+          </ul>
+      </div>
+    <?php endif; ?>
+
+    <!-- flash controle -->
+    <?php if (Session::getInstance()->hasFlashes()): ?>
+     <?php foreach (Session::getInstance()->getFlashes() as $type => $message): ?>
+       <div class="alert alert-<?=$type; ?>"><li><?=$message; ?> </li></div>
+     <?php endforeach; ?>
+   <?php endif;?>
+
     <label for="inputUserName" class="visually-hidden">Nom d'utlisateur</label>
     <input type="text" id="inputUserName" name="login" class="form-control" placeholder="Nom d'utlisateur" required autofocus>
     

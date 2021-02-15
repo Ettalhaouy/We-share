@@ -19,8 +19,10 @@ if($type_account == "1"){
     $account = $db->query('SELECT login FROM organisations  WHERE id = ?',[$_SESSION['id']])->fetch();
 }
 
-$advertisements = $db->query('SELECT COUNT(*) as nb FROM advertisements',[])->fetch();
-$nb_ads = (int)$advertisements->nb;
+$advertisements = $db->query('SELECT * FROM advertisements',[])->fetchAll();
+$nb_advertisements = $db->query('SELECT COUNT(*) as nb FROM advertisements ',[])->fetch();
+$nb_ads = (int)$nb_advertisements->nb;
+
 
 
 
@@ -42,9 +44,10 @@ $nb_ads = (int)$advertisements->nb;
 
 <?php 
 
-    for($i = 1; $i <= $nb_ads; $i++) {
+    for($i = 0; $i < $nb_ads; $i++) {
 
-      $current_ads = $db->query('SELECT title,nb_Donation,id_organisaton,photo,date,SUBSTRING(Description, 1, 160) as text FROM `advertisements` WHERE id = ?; ',[$i])->fetch();
+      $id = (int)$advertisements[$i]->id;
+      $current_ads = $db->query('SELECT title,nb_Donation,id_organisaton,photo,date,SUBSTRING(Description, 1, 160) as text FROM `advertisements` WHERE id = ?; ',[$id])->fetch();
       $org = $db->query('SELECT * FROM organisations WHERE id = ?; ',[$current_ads->id_organisaton])->fetch();
      if($type_account == "1") {
      echo '
@@ -57,7 +60,7 @@ $nb_ads = (int)$advertisements->nb;
             <h4 class="card-title">
               <a href="#">'. $current_ads->title.'</a>
             </h4>
-            <span id="id_hide'.$i.'" hidden>'.$i.'</span>
+            <span id="id_hide'.$id.'" hidden>'.$id.'</span>
             <P class="card-text"> <a href="#">'.$org->login.'</a>  | '.$current_ads->date.'</P>
             <p class="card-text">'.$current_ads->text.'....<br> 
                 <a href="#">Lire plus</a>
@@ -69,7 +72,7 @@ $nb_ads = (int)$advertisements->nb;
             </svg>
             <h4 class="d-inline" style="margin-left: 200px;"><span>'.$current_ads->nb_Donation .'</span> DH</h4>
             <hr>
-            <button type="button" onclick="myFunction'.$i.'()" class="btn btn-primary btn-block">
+            <button type="button" onclick="myFunction'.$id.'()" class="btn btn-primary btn-block">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="25" fill="currentColor" class="bi bi-cash" viewBox="0 0 16 16">
                     <path d="M8 10a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/>
                     <path d="M0 4a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V4zm3 0a2 2 0 0 1-2 2v4a2 2 0 0 1 2 2h10a2 2 0 0 1 2-2V6a2 2 0 0 1-2-2H3z"/>
@@ -91,10 +94,10 @@ $nb_ads = (int)$advertisements->nb;
             </button>
           </div>
           <script>
-          function myFunction'.$i.'() {
+          function myFunction'.$id.'() {
          
-          let var_id'.$i.' =  document.getElementById("id_hide'.$i.'").innerText;
-          let link = "http://localhost/We-share/about_ads.php?id=" + var_id'.$i.';
+          let var_id'.$id.' =  document.getElementById("id_hide'.$id.'").innerText;
+          let link = "http://localhost/We-share/about_ads.php?id=" + var_id'.$id.';
           window.open(link,"_self");
           }
       </script>
@@ -113,7 +116,7 @@ $nb_ads = (int)$advertisements->nb;
           <h4 class="card-title">
             <a href="#">'. $current_ads->title.'</a>
           </h4>
-          <span id="id_hide'.$i.'" hidden>'.$i.'</span>
+          <span id="id_hide'.$id.'" hidden>'.$id.'</span>
           <P class="card-text"> <a href="#">'.$org->login.'</a>  | '.$current_ads->date.'</P>
           <p class="card-text">'.$current_ads->text.'....<br> 
               <a href="#">Lire plus</a>
@@ -125,7 +128,7 @@ $nb_ads = (int)$advertisements->nb;
           </svg>
           <h4 class="d-inline" style="margin-left: 200px;"><span>'.$current_ads->nb_Donation .'</span> DH</h4>
           <hr>
-          <button type="button" onclick="myFunction'.$i.'()" class="btn btn-primary btn-block">
+          <button type="button" onclick="myFunction'.$id.'()" class="btn btn-primary btn-block">
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="25" fill="currentColor" class="bi bi-cash" viewBox="0 0 16 16">
                   <path d="M8 10a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/>
                   <path d="M0 4a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V4zm3 0a2 2 0 0 1-2 2v4a2 2 0 0 1 2 2h10a2 2 0 0 1 2-2V6a2 2 0 0 1-2-2H3z"/>
@@ -147,10 +150,10 @@ $nb_ads = (int)$advertisements->nb;
           </button>
         </div>
         <script>
-        function myFunction'.$i.'() {
+        function myFunction'.$id.'() {
        
-        let var_id'.$i.' =  document.getElementById("id_hide'.$i.'").innerText;
-        let link = "http://localhost/We-share/about_ads.php?id=" + var_id'.$i.';
+        let var_id'.$id.' =  document.getElementById("id_hide'.$id.'").innerText;
+        let link = "http://localhost/We-share/about_ads.php?id=" + var_id'.$id.';
         window.open(link,"_self");
         }
     </script>

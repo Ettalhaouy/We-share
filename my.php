@@ -92,10 +92,20 @@ if($type_account == "1"){
                     <tr>
                         <td> '.$current_ads->title.'</td>
                         <td>'.$current_ads->date.'</td>
+                        <span id="id_hide'.$id.'" hidden>'.$id.'</span>
                         <td class="text-md-center">
-                            <button type="button" class="btn btn-danger">Suprimmer</button>
+                            <button type="button" onclick="delete'.$id.'()" class="btn btn-danger">Suprimmer</button>
                         </td>
-                    </tr>';
+                    </tr>
+                    <script>
+                    function delete'.$id.'() {
+                   
+                    let var_id'.$id.' =  document.getElementById("id_hide'.$id.'").innerText;
+                    let link = "http://localhost/We-share/delete.php?id=" + var_id'.$id.';
+                    window.open(link,"_self");
+                    }
+                      </script> '
+                      ;
                     }
                 ?>
               

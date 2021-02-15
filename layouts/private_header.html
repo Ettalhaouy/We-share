@@ -9,44 +9,46 @@
     <meta name="theme-color" content="#ffffff">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="assets/styles/menu_style.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
     <title>We-share</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/css/bootstrap.min.css" integrity="sha384-DhY6onE6f3zzKbjUPRc2hOzGAdEf4/Dz+WJwBvEYL/lkkIsI3ihufq9hk9K4lVoK" crossorigin="anonymous">
-
+    <link rel="stylesheet" href="assets/styles/nav.css">
+    <script src="assets/JS/nav.js" defer></script>
 
 </head>
 <body>
-
-    <nav>
-        <div class="logo">
-            <img src="assets/images/f.png" alt="Logo image">
+    <nav class="navbar">
+      <div class="brand-title">
+          <img id="logo-img" src="assets/images/We-Share-logo.png" alt="logo image">
+          We share         
         </div>
-        
-   
-        <ul class="nav-links">
-            <li>
-                <a href="home.php">Home</a>
-            </li>
-
-            <li>
-                <a href="my.php"">Mes Annones</a>
-            </li>
-
-            <li>
-                <a href="logout.php">Quitter</a>
-            </li>
-
-            <li style="color: #9b9c9b;">
-                <?php echo $account->login; ?>
-            </li>
-
-    </ul>
-    <div class="burger">
-        <div class="line1"></div>
-        <div class="line2"></div>
-        <div class="line3"></div>
-    </div>
+      <a href="#" class="toggle-button">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </a>
+      <div class="navbar-links">
+        <ul>
+          <li><a href="home.php">Home</a></li>
+          <li><a href="my.php">Mes Annonces</a></li>
+          <li><a href="logout.php">Quittez</a></li>
+          <li id="user-li"><a href="#"  id="user"><?php echo $account->login;?></a></li>
+          <style>
+            #user{
+              background-color: white;
+              color: #0069D9;
+            }
+            #user-li {
+              background-color: white;
+              margin-right: .5rem;
+              margin-left: .5rem;
+            }
+            #user-li :hover{
+              background-color: white;
+            }
+          </style>
+        </ul>
+      </div>
     </nav>
-    <script src="assets/JS/nav.js"></script>
+

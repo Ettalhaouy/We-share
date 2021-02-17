@@ -93,8 +93,11 @@ if($type_account == "1"){
                         <td> '.$current_ads->title.'</td>
                         <td>'.$current_ads->date.'</td>
                         <span id="id_hide'.$id.'" hidden>'.$id.'</span>
-                        <td class="text-md-center">
+                        <td class="text-md">
+                        <div class="btn-group" role="group" aria-label="Basic example">
+                            <button type="button" onclick="modify'.$id.'()" class="btn btn-primary">Modifier</button>
                             <button type="button" onclick="delete'.$id.'()" class="btn btn-danger">Suprimmer</button>
+                        </div>
                         </td>
                     </tr>
                     <script>
@@ -104,6 +107,13 @@ if($type_account == "1"){
                     let link = "http://localhost/We-share/delete.php?id=" + var_id'.$id.';
                     window.open(link,"_self");
                     }
+
+                    function modify'.$id.'() {
+                   
+                        let var_id'.$id.' =  document.getElementById("id_hide'.$id.'").innerText;
+                        let link = "http://localhost/We-share/transfer.php?id=" + var_id'.$id.';
+                        window.open(link,"_self");
+                        }
                       </script> '
                       ;
                     }

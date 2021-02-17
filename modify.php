@@ -4,7 +4,7 @@ require 'inc/Autoloader.php';
 
 
 if (empty(Session::getInstance()->read('id'))) {
-    Session::getInstance()->setFlash('danger','Vous devez etre connecté');
+    Session::getInstance()->setFlash('danger','Vous devez être connecté');
     App::redirect('signin.php');
   }
 
@@ -44,20 +44,20 @@ if (!empty($_FILES['img'])) {
        $status = true;
      }
      else{
-        $errors["img"] = "Pour l'images seuls les extenetions PNG ou JPG sont autorisées";
+        $errors["img"] = "Pour l'image seuls les extensions PNG ou JPEG sont autorisées";
       }
       
 }
 
 if($status){
-    Session::getInstance()->setFlash('success','La modification est mise en place');
+    Session::getInstance()->setFlash('success','La modification a été mise en place');
     App::redirect('my.php');
 }
 
 ?>
 
   <?php include 'layouts/login_header.html';?>
-    <title>Se connecter | We-Share</title>
+    <title>Modifier Annonce | We-Share</title>
     <style>
         html,body {
         height: 100%;
@@ -129,12 +129,12 @@ if($status){
 <main class="form-signin-signup">
   <form action="" method="POST" enctype="multipart/form-data">
     <img class="mb-4 rounded-circle" src="assets/images/We-Share-logo.png" alt="" width="72" height="57">
-    <h1 class="h3 mb-3 fw-normal"> A modifier </h1>
+    <h1 class="h3 mb-3 fw-normal">Modifier L'annonce</h1>
 
     <!-- errors controle -->
     <?php  if (!empty($errors)):?>
       <div class="alert alert-danger">
-        <p>Vous n'avez pas uploader les fichiers  correctement</p>
+        <p>Votre modification a connu des problèmes lors de la soumission :</p>
         <?php foreach ($errors as $error): ?>
           <ul>
             <li><?= $error; ?></li>
@@ -144,14 +144,14 @@ if($status){
     <?php endif; ?>
 
 
-    <label for="inputEmail" class="visually-hidden">Le titre</label>
-    <input type="text" id="inputEmail" name="title" class="form-control" placeholder="Le titre" value="<?php echo $query->title; ?>"  autofocus>
+    <label for="inputEmail" class="visually-hidden">Choisissez un titre convenable</label>
+    <input type="text" id="inputEmail" name="title" class="form-control" placeholder="Choisissez un titre convenable" value="<?php echo $query->title; ?>"  autofocus>
 
-    <label class="form-label visually-hidden" for="customFile">Choisie une image pour votre annonce</label>
-    <input type="file" class="form-control" name ="img" id="customFile" placeholder="L'image"  />
+    <label class="form-label visually-hidden" for="customFile">Choisissez une image pour votre annonce</label>
+    <input type="file" class="form-control" name ="img" id="customFile" placeholder="Choisissez une image pour votre annonce"  />
     
-    <label for="InputDiscription" class="form-label visually-hidden">Discription de l'annonce</label>
-    <textarea type="text" name ="description" class="form-control" id="InputDiscription" placeholder="Vuillez saisir la discription de l'annonce" value="prev" rows="6" cols="50" ><?php echo $query->Description; ?>
+    <label for="InputDiscription" class="form-label visually-hidden">Choisissez une description convenable</label>
+    <textarea type="text" name ="description" class="form-control" id="InputDiscription" placeholder="Choisissez une description convenable" value="prev" rows="6" cols="50" ><?php echo $query->Description; ?>
     </textarea>
             
 

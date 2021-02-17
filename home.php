@@ -3,7 +3,7 @@ require 'inc/Autoloader.php';
 
 
   if (empty(Session::getInstance()->read('id'))) {
-  Session::getInstance()->setFlash('danger','Vous devez etre connecté');
+  Session::getInstance()->setFlash('danger','Vous devez être connecté');
   App::redirect('signin.php');
 }
 
@@ -63,7 +63,7 @@ $nb_ads = (int)$nb_advertisements->nb;
             <span id="id_hide'.$id.'" hidden>'.$id.'</span>
             <P class="card-text"> <a href="#">'.$org->login.'</a>  | '.$current_ads->date.'</P>
             <p class="card-text">'.$current_ads->text.'....<br> 
-                <a href="#">Lire plus</a>
+                <a href="http://localhost/We-share/about_ads.php?id='.$id.'">Lire plus</a>
             </p>
             <hr>
             <svg class="d-inline" style="margin-left: 20px;" xmlns="http://www.w3.org/2000/svg" width="35" height="50" fill="currentColor" class="bi bi-cash" viewBox="0 0 16 16">
@@ -77,13 +77,13 @@ $nb_ads = (int)$nb_advertisements->nb;
                     <path d="M8 10a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/>
                     <path d="M0 4a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V4zm3 0a2 2 0 0 1-2 2v4a2 2 0 0 1 2 2h10a2 2 0 0 1 2-2V6a2 2 0 0 1-2-2H3z"/>
                 </svg>
-                Donate
+                Faire un don
             </button>
             <button type="button" class="btn btn-secondary btn-block">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="25" fill="currentColor" class="bi bi-share-fill" viewBox="0 0 16 16">
                     <path d="M11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.499 2.499 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5z"/>
                 </svg>
-                Share
+                Partager
             </button>
             <button type="button" class="btn btn-secondary btn-block">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="25" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
@@ -119,7 +119,7 @@ $nb_ads = (int)$nb_advertisements->nb;
           <span id="id_hide'.$id.'" hidden>'.$id.'</span>
           <P class="card-text"> <a href="#">'.$org->login.'</a>  | '.$current_ads->date.'</P>
           <p class="card-text">'.$current_ads->text.'....<br> 
-              <a href="#">Lire plus</a>
+              <a href=""http://localhost/We-share/about_ads.php?id='.$id.'"">Lire plus</a>
           </p>
           <hr>
           <svg class="d-inline" style="margin-left: 20px;" xmlns="http://www.w3.org/2000/svg" width="35" height="50" fill="currentColor" class="bi bi-cash" viewBox="0 0 16 16">
@@ -128,10 +128,9 @@ $nb_ads = (int)$nb_advertisements->nb;
           </svg>
           <h4 class="d-inline" style="margin-left: 200px;"><span>'.$current_ads->nb_Donation .'</span> DH</h4>
           <hr>
-          <button type="button" onclick="myFunction'.$id.'()" class="btn btn-primary btn-block">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="25" fill="currentColor" class="bi bi-cash" viewBox="0 0 16 16">
-                  <path d="M8 10a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/>
-                  <path d="M0 4a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V4zm3 0a2 2 0 0 1-2 2v4a2 2 0 0 1 2 2h10a2 2 0 0 1 2-2V6a2 2 0 0 1-2-2H3z"/>
+          <button type="button" data-toggle="modal" data-target="#myModal" class="btn btn-primary btn-block">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cursor-fill" viewBox="0 0 16 16">
+              <path d="M14.082 2.182a.5.5 0 0 1 .103.557L8.528 15.467a.5.5 0 0 1-.917-.007L5.57 10.694.803 8.652a.5.5 0 0 1-.006-.916l12.728-5.657a.5.5 0 0 1 .556.103z"/>
               </svg>
               Consulter
           </button>
@@ -139,7 +138,7 @@ $nb_ads = (int)$nb_advertisements->nb;
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="25" fill="currentColor" class="bi bi-share-fill" viewBox="0 0 16 16">
                   <path d="M11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.499 2.499 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5z"/>
               </svg>
-              Share
+              Partager
           </button>
           <button type="button" class="btn btn-secondary btn-block">
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="25" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
@@ -149,14 +148,44 @@ $nb_ads = (int)$nb_advertisements->nb;
               À propos de l\'organisation
           </button>
         </div>
-        <script>
-        function myFunction'.$id.'() {
-       
-        let var_id'.$id.' =  document.getElementById("id_hide'.$id.'").innerText;
-        let link = "http://localhost/We-share/about_ads.php?id=" + var_id'.$id.';
-        window.open(link,"_self");
-        }
-    </script>
+       // ! a changer
+    <!-- The Modal -->
+    <div class="modal fade" id="myModal">
+      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+        
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h4 class="modal-title">Modal Heading</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+          
+          <!-- Modal body -->
+          <div class="modal-body">
+            <center>
+            <img style="width: 40%; height: 10%; border-radius: 50%;" class="mb-4 rounded-circle" src="assets/images/We-Share-logo.png" alt="">
+            <br>
+            <p>Nome d\'association:</p>
+            <em>Chi l3ba</em>
+            <p>Nome d\'association:</p>
+            <em>Chi l3ba</em>
+            <p>Nome d\'association:</p>
+            <em>Chi l3ba</em>
+            <p>Nome d\'association:</p>
+            <em>Chi l3ba</em>
+            <p class="mt-5 mb-3 text-muted">&copy; We Share 2021</p>
+            </center>
+          </div>
+          
+          <!-- Modal footer -->
+          <div class="modal-footer">
+            
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+          </div>
+          
+        </div>
+      </div>
+    </div>
         <form>
       </div>
     </div>
@@ -178,7 +207,7 @@ $nb_ads = (int)$nb_advertisements->nb;
     }
   </style>
   <center>
-  <h1 class="display-3">No content yet !</h1>
+  <h1 class="display-3">Pas de contenu pour le moment !</h1>
   <center>
 <?php  endif; ?>
 

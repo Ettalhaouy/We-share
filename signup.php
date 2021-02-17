@@ -7,15 +7,15 @@ if (!empty($_POST))
 	$db = App::getDatabase();
   $validator = new Validator($_POST);
   if($_POST['accountType'] == "1") {
-        if($validator->isEmail('email',"Votre email n'est pas valide")){
+        if($validator->isEmail('email',"Votre email est invalide")){
           $validator->isUniq('email', $db, 'users', "Cet email est déja utilisé pour un autre compte");
         }
-        $validator->isConfirmed('password', 'password2', 'Vous devez entrer un mot de passe valide');
+        $validator->isConfirmed('password', 'password2', 'Votre mot de passe est invalide');
         if ($validator->isValid())
         {
           $Auth = new Auth;
           $Auth->register($db,$_POST['email'],$_POST['login'],$_POST['password'],"users");
-          Session::getInstance()->setFlash('success','Votre compte est bien créer');
+          Session::getInstance()->setFlash('success','Votre compte a été créé avec succès');
           App::redirect('signin.php');
         }
         else
@@ -23,16 +23,14 @@ if (!empty($_POST))
           $errors = $validator->getErrors();
         }
   }else{
-        if($validator->isEmail('email',"Votre email n'est pas valide")){
+        if($validator->isEmail('email',"Votre email est invalide")){
           $validator->isUniq('email', $db, 'organisations', "Cet email est déja utilisé pour un autre compte");
         }
-        $validator->isConfirmed('password', 'password2', 'Vous devez entrer un mot de passe valide');
+        $validator->isConfirmed('password', 'password2', 'Votre mot de passe est invalide');
         if ($validator->isValid())
         {
           $Auth = new Auth;
           $Auth->register($db,$_POST['email'],$_POST['login'],$_POST['password'],"organisations");
-
-          Session::getInstance()->setFlash('success','Votre compte est bien créer');
           App::redirect('layouts/account_created.html');
         }
         else
@@ -57,7 +55,7 @@ if (!empty($_POST))
         <!-- errors controle -->
         <?php  if (!empty($errors)):?>
       <div class="alert alert-danger">
-        <p>Vous n'avez pas remplissez les données correctement: </p>
+        <p>Votre demande a subi des problémes lors du traitement :</p>
         <?php foreach ($errors as $error): ?>
           <ul>
             <li><?= $error; ?></li>
@@ -66,12 +64,6 @@ if (!empty($_POST))
       </div>
     <?php endif; ?>
 
-    <!-- flash controle -->
-    <?php if (Session::getInstance()->hasFlashes()): ?>
-     <?php foreach (Session::getInstance()->getFlashes() as $type => $message): ?>
-       <div class="alert alert-<?=$type; ?>"><li><?=$message; ?> </li></div>
-     <?php endforeach; ?>
-   <?php endif;?>
 
     <label for="inputUserName" class="visually-hidden">Nom d'utlisateur</label>
     <input type="text" id="inputUserName" name="login" class="form-control" placeholder="Nom d'utlisateur" required autofocus>
@@ -87,9 +79,9 @@ if (!empty($_POST))
     
     <div class="input-group mb-3">
       <select class="form-select" id="inputAcountType" name="accountType" required>
-        <option selected hidden >Type de compte..</option>
+        <option selected hidden >Type de compte...</option>
         <option value="1">Personnel</option>
-        <option value="2">Organisation</option>
+        <option value="2">Organisationnel</option>
       </select>
     </div>
 

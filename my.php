@@ -3,7 +3,7 @@ require 'inc/Autoloader.php';
 
 
   if (empty(Session::getInstance()->read('id'))) {
-  Session::getInstance()->setFlash('danger','Vous devez etre connecté');
+  Session::getInstance()->setFlash('danger','Vous devez être connecté');
   App::redirect('signin.php');
 }
 
@@ -40,9 +40,9 @@ if($type_account == "1"){
             <table class="table text-md-center mt-5">
                 <thead>
                     <tr class="bg-secondary">
-                        <th class="col-4">Title</th>
-                        <th class="col-4">Date</th>
-                        <th class="col-1">Amount</th>
+                        <th class="col-4">Titre d'annonce</th>
+                        <th class="col-4">Date du don</th>
+                        <th class="col-1">Valeur du don</th>
                     </tr>
                 </thead>
 
@@ -74,9 +74,9 @@ if($type_account == "1"){
             <table class="table text-md-center mt-5">
                 <thead>
                     <tr class="bg-secondary">
-                        <th class="col-4">Title</th>
-                        <th class="col-4">Date</th>
-                        <th class="col-1">Edit</th>
+                        <th class="col-4">Titre d'annonce</th>
+                        <th class="col-4">Date de modification</th>
+                        <th class="col-1">Éditer</th>
                     </tr>
                 </thead>
                 <?php
@@ -96,7 +96,7 @@ if($type_account == "1"){
                         <td class="text-md">
                         <div class="btn-group" role="group" aria-label="Basic example">
                             <button type="button" onclick="modify'.$id.'()" class="btn btn-primary">Modifier</button>
-                            <button type="button" onclick="delete'.$id.'()" class="btn btn-danger">Suprimmer</button>
+                            <button type="button" onclick="delete'.$id.'()" class="btn btn-danger">Supprimer</button>
                         </div>
                         </td>
                     </tr>

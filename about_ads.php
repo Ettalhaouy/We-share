@@ -3,7 +3,7 @@ require 'inc/Autoloader.php';
 
 
 if (empty(Session::getInstance()->read('id'))) {
-Session::getInstance()->setFlash('danger','Vous devez etre connecté');
+Session::getInstance()->setFlash('danger','Vous devez être connecté');
 App::redirect('signin.php');
 }
 $db = App::getDatabase();
@@ -48,7 +48,7 @@ $ads = $db->query('SELECT * FROM advertisements  WHERE id = ?',[$_GET['id']])->f
                         <path d="M8 10a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/>
                         <path d="M0 4a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V4zm3 0a2 2 0 0 1-2 2v4a2 2 0 0 1 2 2h10a2 2 0 0 1 2-2V6a2 2 0 0 1-2-2H3z"/>
                     </svg>
-                    Donate
+                    Faire un don 
                 </button>
             </div>
         </div>

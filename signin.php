@@ -7,17 +7,17 @@ if (!empty($_POST)){
   $validator = new Validator($_POST);
 
   if($validator->accountValid('email','password',$db,$_POST['accountType']))
-  {
+  { 
 
     $user = $validator->accountValid('email','password',$db,$_POST['accountType']);
     Session::getInstance()->write('genre', $_POST['accountType']);
     Session::getInstance()->write('auth', $user);
     Session::getInstance()->write('id', $user->id);
-    Session::getInstance()->setFlash('success','Bien connecté');
+    Session::getInstance()->setFlash('success',"Bienvenue ".$user->login." !");
     App::redirect('home.php');
   }
   else{
-    Session::getInstance()->setFlash('danger','Email ou mot de passe incorrecte');
+    Session::getInstance()->setFlash('danger','Email, mot de passe ou type de compte incorrecte');
     App::redirect('signin.php');
   }
 }
@@ -33,18 +33,6 @@ if (!empty($_POST)){
   <form action="" method="POST">
     <img class="mb-4 rounded-circle" src="assets/images/We-Share-logo.png" alt="" width="72" height="57">
     <h1 class="h3 mb-3 fw-normal"> Se connecter </h1>
-
-    <!-- errors controle -->
-    <?php  if (!empty($errors)):?>
-      <div class="alert alert-danger">
-        <p>Vous n'avez pas uploader les fichiers  correctement</p>
-        <?php foreach ($errors as $error): ?>
-          <ul>
-            <li><?= $error; ?></li>
-          <?php endforeach; ?>
-          </ul>
-      </div>
-    <?php endif; ?>
 
     <!-- flash controle -->
     <?php if (Session::getInstance()->hasFlashes()): ?>
@@ -62,9 +50,9 @@ if (!empty($_POST)){
  
     <div class="input-group mb-3">
       <select class="form-select" id="inputAcountType" name="accountType" required>
-        <option selected hidden >Type de compte..</option>
+        <option selected hidden >Type de compte...</option>
         <option value="1">Personnel</option>
-        <option value="2">Organisation</option>
+        <option value="2">Organisationnel</option>
       </select>
     </div>
 

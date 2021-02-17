@@ -4,7 +4,7 @@ require 'inc/Autoloader.php';
 
 
   if (empty(Session::getInstance()->read('id'))) {
-  Session::getInstance()->setFlash('danger','Vous devez etre connecté');
+  Session::getInstance()->setFlash('danger','Vous devez être connecté');
   App::redirect('signin.php');
 }
 
@@ -30,17 +30,17 @@ if ( !empty($_POST) && !empty($_FILES)) {
         $insert = $db->query("INSERT INTO advertisements (title, photo, Description,date,id_organisaton)
         VALUES (?,?,?,?,?)",[$_POST['title'],$file_dest,$_POST['description'],$date,$session_id]);
 
-         Session::getInstance()->setFlash('success','Annonce bien crée');
+         Session::getInstance()->setFlash('success','L\'Annonce a été crée avec succés');
          App::redirect('my.php');
 
        }
      }
      else{
-        $errors['img']= "Pour l'images seuls les extenetions PNG ou JPG sont autorisées";
+        $errors['img']= "Pour l'image seuls les extensions PNG ou JPEG sont autorisées";
       }
   }
   else{
-    $errors[]="tous les champs doivent être remplis";
+    $errors[]="Tous les champs doivent être remplis";
   }
   }
   
@@ -125,7 +125,7 @@ if ( !empty($_POST) && !empty($_FILES)) {
     <!-- errors controle -->
     <?php  if (!empty($errors)):?>
       <div class="alert alert-danger">
-        <p>Vous n'avez pas uploader les fichiers  correctement</p>
+        <p>Votre nouvelle annonce a connu des problèmes lors de la création :</p>
         <?php foreach ($errors as $error): ?>
           <ul>
             <li><?= $error; ?></li>
@@ -135,14 +135,14 @@ if ( !empty($_POST) && !empty($_FILES)) {
     <?php endif; ?>
 
 
-    <label for="inputEmail" class="visually-hidden">Le titre</label>
-    <input type="text" id="inputEmail" name="title" class="form-control" placeholder="Le titre d'annonce" required autofocus>
+    <label for="inputEmail" class="visually-hidden">Choisissez un titre convenable</label>
+    <input type="text" id="inputEmail" name="title" class="form-control" placeholder="Choisissez un titre convenable" required autofocus>
 
-    <label class="form-label visually-hidden" for="customFile">Choisie une image pour votre annonce</label>
-    <input type="file" class="form-control" name ="img" id="customFile" placeholder="L'image" required/>
+    <label class="form-label visually-hidden" for="customFile">Choisissez une image pour votre annonce</label>
+    <input type="file" class="form-control" name ="img" id="customFile" placeholder="Choisissez une image pour votre annonce" required/>
     
-    <label for="InputDiscription" class="form-label visually-hidden">Discription de l'annonce</label>
-    <textarea type="text" name ="description" class="form-control" id="InputDiscription" placeholder="Veuillez saisir la discription de l'annonce"  rows="6" cols="50" required></textarea>
+    <label for="InputDiscription" class="form-label visually-hidden">Choisissez une description convenable</label>
+    <textarea type="text" name ="description" class="form-control" id="InputDiscription" placeholder="Choisissez une description convenable"  rows="6" cols="50" required></textarea>
             
 
     <button class="w-100 btn btn-lg btn-primary" type="submit">Ajouter</button>

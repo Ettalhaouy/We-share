@@ -22,7 +22,7 @@ if (!empty($_POST))
         {
           $errors = $validator->getErrors();
         }
-  }else{
+  }else if($_POST['accountType'] == "2"){
         if($validator->isEmail('email',"Votre email est invalide")){
           $validator->isUniq('email', $db, 'organisations', "Cet email est déja utilisé pour un autre compte");
         }
@@ -37,6 +37,8 @@ if (!empty($_POST))
         {
           $errors = $validator->getErrors();
         }
+  }else{
+    $errors[] = "Vous devez préciser le type de compte";
   }
 }
 ?>
@@ -85,11 +87,7 @@ if (!empty($_POST))
       </select>
     </div>
 
-    <div class="checkbox mb-3">
-        <label>
-          <input type="checkbox" value="remember-me"> J'accepte les <a href="#">conditions d'utilisation</a>
-        </label>
-    </div>
+
 
     <button class="w-100 btn btn-lg btn-primary" type="submit">S'inscrire </button>
     <p class="mt-5 mb-3 text-muted">&copy; We Share 2021</p>

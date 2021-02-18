@@ -48,6 +48,7 @@ $nb_ads = (int)$nb_advertisements->nb;
 
       $id = (int)$advertisements[$i]->id;
       $current_ads = $db->query('SELECT title,nb_Donation,id_organisaton,photo,date,SUBSTRING(Description, 1, 160) as text FROM `advertisements` WHERE id = ?; ',[$id])->fetch();
+      $orgId = (int)$current_ads->id_organisaton;
       $org = $db->query('SELECT * FROM organisations WHERE id = ?; ',[$current_ads->id_organisaton])->fetch();
      if($type_account == "1") {
      echo '
@@ -85,7 +86,7 @@ $nb_ads = (int)$nb_advertisements->nb;
                 </svg>
                 Partager
             </button>
-            <button type="button" class="btn btn-secondary btn-block">
+            <button type="button" data-toggle="modal" data-target="#myModal'.$orgId.'" class="btn btn-secondary btn-block">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="25" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
                     <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
                     <path d="M8.93 6.588l-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
@@ -101,6 +102,64 @@ $nb_ads = (int)$nb_advertisements->nb;
           window.open(link,"_self");
           }
       </script>
+      </div>
+                  <script>
+                  fetch("extrainfos.json")
+                  .then(response => response.json())
+                  .then(data => {
+                    id = '.$orgId.';
+                    console.log(id);
+                    for(i=0;i<Object.keys(data[id]).length ;i++){
+                      const header =  `<div class="header">${Object.keys(data[id])[i]}</div>`;
+                      const content = `<div class="content">${Object.values(data[id])[i]}</div>`;
+                      document.getElementById(\'modal-elt'.$orgId.'\').innerHTML += header;
+                      document.getElementById(\'modal-elt'.$orgId.'\').innerHTML += content;
+                    }
+                  })
+              </script>
+              <style>
+                .header{
+                  color:#025CE2;
+                  font-size: 1.5rem;
+                  text-transform: uppercase;
+                }
+                .content{
+                  font-size: 1.25rem;
+                  font-style: oblique;
+                  margin-bottom: 10%;
+                }
+              </style>
+            <!-- The Modal -->
+            <div class="modal fade" id="myModal'.$orgId.'">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+              <div class="modal-content">
+              
+                <!-- Modal Header -->
+                <div class="modal-header">
+                  <h4 class="modal-title">À propos de '.$org->login.'</h4>
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                
+                <!-- Modal body -->
+                <div class="modal-body">
+                  <center>
+                  <img style="width: 40%; height: 10%; border-radius: 50%;" class="mb-4 rounded-circle" src="assets/images/We-Share-logo.png" alt="">
+                  <br>
+                  <div id="modal-elt'.$orgId.'"></div>
+
+                  <p class="mt-5 mb-3 text-muted">&copy; We Share 2021</p>
+                  </center>
+                </div>
+                
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                  
+                  <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+                
+              </div>
+            </div>
+          </div>
           <form>
         </div>
       </div>
@@ -128,7 +187,7 @@ $nb_ads = (int)$nb_advertisements->nb;
           </svg>
           <h4 class="d-inline" style="margin-left: 200px;"><span>'.$current_ads->nb_Donation .'</span> DH</h4>
           <hr>
-          <button type="button" data-toggle="modal" data-target="#myModal" class="btn btn-primary btn-block">
+          <button type="button"  onclick="consult'.$id.'()"  class="btn btn-primary btn-block">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cursor-fill" viewBox="0 0 16 16">
               <path d="M14.082 2.182a.5.5 0 0 1 .103.557L8.528 15.467a.5.5 0 0 1-.917-.007L5.57 10.694.803 8.652a.5.5 0 0 1-.006-.916l12.728-5.657a.5.5 0 0 1 .556.103z"/>
               </svg>
@@ -140,52 +199,79 @@ $nb_ads = (int)$nb_advertisements->nb;
               </svg>
               Partager
           </button>
-          <button type="button" class="btn btn-secondary btn-block">
+          <button type="button"  data-toggle="modal" data-target="#myModal'.$orgId.'"  class="btn btn-secondary btn-block">
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="25" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
                   <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
                   <path d="M8.93 6.588l-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
               </svg>
               À propos de l\'organisation
           </button>
-        </div>
-       // ! a changer
-    <!-- The Modal -->
-    <div class="modal fade" id="myModal">
-      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-        <div class="modal-content">
-        
-          <!-- Modal Header -->
-          <div class="modal-header">
-            <h4 class="modal-title">Modal Heading</h4>
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-          </div>
-          
-          <!-- Modal body -->
-          <div class="modal-body">
-            <center>
-            <img style="width: 40%; height: 10%; border-radius: 50%;" class="mb-4 rounded-circle" src="assets/images/We-Share-logo.png" alt="">
-            <br>
-            <p>Nome d\'association:</p>
-            <em>Chi l3ba</em>
-            <p>Nome d\'association:</p>
-            <em>Chi l3ba</em>
-            <p>Nome d\'association:</p>
-            <em>Chi l3ba</em>
-            <p>Nome d\'association:</p>
-            <em>Chi l3ba</em>
-            <p class="mt-5 mb-3 text-muted">&copy; We Share 2021</p>
-            </center>
-          </div>
-          
-          <!-- Modal footer -->
-          <div class="modal-footer">
-            
-            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-          </div>
-          
-        </div>
-      </div>
-    </div>
+        </div>  
+        <script>
+        function consult'.$id.'() {
+       
+        let var_id'.$id.' =  document.getElementById("id_hide'.$id.'").innerText;
+        let link = "http://localhost/We-share/consult.php?id=" + var_id'.$id.';
+        window.open(link,"_self");
+        }
+        </script>
+                  <script>
+                  fetch("extrainfos.json")
+                  .then(response => response.json())
+                  .then(data => {
+                    id = '.$orgId.';
+                    console.log(id);
+                    for(i=0;i<Object.keys(data[id]).length ;i++){
+                      const header =  `<div class="header">${Object.keys(data[id])[i]}</div>`;
+                      const content = `<div class="content">${Object.values(data[id])[i]}</div>`;
+                      document.getElementById(\'modal-elt'.$orgId.'\').innerHTML += header;
+                      document.getElementById(\'modal-elt'.$orgId.'\').innerHTML += content;
+                    }
+                  })
+              </script>
+              <style>
+                .header{
+                  color:#025CE2;
+                  font-size: 1.5rem;
+                  text-transform: uppercase;
+                }
+                .content{
+                  font-size: 1.25rem;
+                  font-style: oblique;
+                  margin-bottom: 10%;
+                }
+              </style>
+            <!-- The Modal -->
+            <div class="modal fade" id="myModal'.$orgId.'">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+              <div class="modal-content">
+              
+                <!-- Modal Header -->
+                <div class="modal-header">
+                  <h4 class="modal-title">À propos de '.$org->login.'</h4>
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                
+                <!-- Modal body -->
+                <div class="modal-body">
+                  <center>
+                  <img style="width: 40%; height: 10%; border-radius: 50%;" class="mb-4 rounded-circle" src="assets/images/We-Share-logo.png" alt="">
+                  <br>
+                  <div id="modal-elt'.$orgId.'"></div>
+
+                  <p class="mt-5 mb-3 text-muted">&copy; We Share 2021</p>
+                  </center>
+                </div>
+                
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                  
+                  <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+                
+              </div>
+            </div>
+            </div>
         <form>
       </div>
     </div>

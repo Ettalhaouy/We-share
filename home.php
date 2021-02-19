@@ -80,12 +80,6 @@ $nb_ads = (int)$nb_advertisements->nb;
                 </svg>
                 Faire un don
             </button>
-            <button type="button" class="btn btn-secondary btn-block">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="25" fill="currentColor" class="bi bi-share-fill" viewBox="0 0 16 16">
-                    <path d="M11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.499 2.499 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5z"/>
-                </svg>
-                Partager
-            </button>
             <button type="button" data-toggle="modal" data-target="#myModal'.$orgId.'" class="btn btn-secondary btn-block">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="25" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
                     <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
@@ -178,7 +172,7 @@ $nb_ads = (int)$nb_advertisements->nb;
           <span id="id_hide'.$id.'" hidden>'.$id.'</span>
           <P class="card-text"> <a href="#">'.$org->login.'</a>  | '.$current_ads->date.'</P>
           <p class="card-text">'.$current_ads->text.'....<br> 
-              <a href=""http://localhost/We-share/about_ads.php?id='.$id.'"">Lire plus</a>
+              <a href="http://localhost/We-share/consult.php?id='.$id.'">Lire plus</a>
           </p>
           <hr>
           <svg class="d-inline" style="margin-left: 20px;" xmlns="http://www.w3.org/2000/svg" width="35" height="50" fill="currentColor" class="bi bi-cash" viewBox="0 0 16 16">
@@ -192,12 +186,6 @@ $nb_ads = (int)$nb_advertisements->nb;
               <path d="M14.082 2.182a.5.5 0 0 1 .103.557L8.528 15.467a.5.5 0 0 1-.917-.007L5.57 10.694.803 8.652a.5.5 0 0 1-.006-.916l12.728-5.657a.5.5 0 0 1 .556.103z"/>
               </svg>
               Consulter
-          </button>
-          <button type="button" class="btn btn-secondary btn-block">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="25" fill="currentColor" class="bi bi-share-fill" viewBox="0 0 16 16">
-                  <path d="M11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.499 2.499 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5z"/>
-              </svg>
-              Partager
           </button>
           <button type="button"  data-toggle="modal" data-target="#myModal'.$orgId.'"  class="btn btn-secondary btn-block">
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="25" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">

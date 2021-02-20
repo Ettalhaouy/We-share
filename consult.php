@@ -1,14 +1,12 @@
 <?php
 require 'inc/Autoloader.php';
 
-
 if (empty(Session::getInstance()->read('id'))) {
-Session::getInstance()->setFlash('danger','Vous devez être connecté');
-App::redirect('signin.php');
+    Session::getInstance()->setFlash('danger', 'Vous devez être connecté');
+    App::redirect('signin.php');
 }
 $db = App::getDatabase();
-$ads = $db->query('SELECT * FROM advertisements  WHERE id = ?',[$_GET['id']])->fetch();
-
+$ads = $db->query('SELECT * FROM advertisements  WHERE id = ?', [$_GET['id']])->fetch();
 
 ?>
 <!DOCTYPE html>
@@ -25,7 +23,7 @@ $ads = $db->query('SELECT * FROM advertisements  WHERE id = ?',[$_GET['id']])->f
         <meta name="description" content="">
         <meta name="author" content="Noureddine Ettalhaouy, Ismail Chakrane , Faysal Belkhchicha ">
         <title>A propose d'annonce</title>
-    
+
         <!-- Bootstrap core CSS -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/css/bootstrap.min.css" integrity="sha384-DhY6onE6f3zzKbjUPRc2hOzGAdEf4/Dz+WJwBvEYL/lkkIsI3ihufq9hk9K4lVoK" crossorigin="anonymous">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -34,18 +32,18 @@ $ads = $db->query('SELECT * FROM advertisements  WHERE id = ?',[$_GET['id']])->f
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
 
-  
-        
+
+
     </head>
 <body>
     <div class="container">
         <div class="card mb-3  container">
-            <img  style="margin: 20px 0px;"  src="<?php echo $ads->photo;?>" class="img card-img-top" alt="...">
+            <img  style="margin: 20px 0px;"  src="<?php echo $ads->photo; ?>" class="img card-img-top" alt="...">
             <div class="card-body">
-            <h3 class="card-title"><?php echo $ads->title;?></h3>
-            <p class="card-text"><small class="text-muted"><?php echo $ads->date;?></small></p>
+            <h3 class="card-title"><?php echo $ads->title; ?></h3>
+            <p class="card-text"><small class="text-muted"><?php echo $ads->date; ?></small></p>
             <p class="card-text">
-            <?php echo $ads->Description;?>
+            <?php echo $ads->Description; ?>
             </p>
             </div>
         </div>
@@ -59,7 +57,7 @@ $ads = $db->query('SELECT * FROM advertisements  WHERE id = ?',[$_GET['id']])->f
                 </button>
         </div>
 
-    
+
       <style>
            .share-btn-container {
             background: #fff;
@@ -108,13 +106,13 @@ $ads = $db->query('SELECT * FROM advertisements  WHERE id = ?',[$_GET['id']])->f
   <div class="modal fade" id="myModal">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
       <div class="modal-content">
-      
+
         <!-- Modal Header -->
         <div class="modal-header">
           <h4 class="modal-title">Modal Heading</h4>
           <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
-        
+
         <!-- Modal body -->
         <div class="modal-body">
           <center>
@@ -141,13 +139,13 @@ $ads = $db->query('SELECT * FROM advertisements  WHERE id = ?',[$_GET['id']])->f
           <p class="mt-5 mb-3 text-muted">&copy; We Share 2021</p>
           </center>
         </div>
-        
+
         <!-- Modal footer -->
         <div class="modal-footer">
-          
+
           <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
         </div>
-        
+
       </div>
     </div>
   </div>
@@ -176,7 +174,7 @@ $ads = $db->query('SELECT * FROM advertisements  WHERE id = ?',[$_GET['id']])->f
             `https://twitter.com/share?url=${postUrl}&text=${postTitle}`
         );
 
-        
+
         linkedinBtn.setAttribute(
             "href",
             `https://www.linkedin.com/shareArticle?url=${postUrl}&title=${postTitle}`

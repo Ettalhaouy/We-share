@@ -1,47 +1,41 @@
-[   
+[
     {},
     {
-        "Nom":"Afoulki",
+        "Nom": "Afoulki",
         "Tél": "0033 | 6 80 57 19 46 | 06 80 57 19 46",
         "Adresse": "Christian Cursol 4 L'Aubarède 33920 Saugon",
-        "Contact" : "http://www.ass-afoulki.org/contacts.html",
+        "Contact": "http://www.ass-afoulki.org/contacts.html",
         "Déscription": "Association franco marocaine de lutte contre illétrisme et le développement de la condition des filles et  la femme dans le monde rural de la province d'Essaouira"
-        
     },
     {
-        "Nom":"MekkiL",
-        "Contact" : "assmekkil@gmail.com",
+        "Nom": "MekkiL",
+        "Contact": "assmekkil@gmail.com",
         "Déscription": "Elle concentre ses efforts sur le pôle mère-enfant dans les zones éloignées et/ou défavorisées. Son programme privilégie le développement, la santé et la protection de la mère et de l’enfant"
     },
     {
-
-        "Nom":"Soleil bleu",
+        "Nom": "Soleil bleu",
         "Tél": "0033 | 6 80 57 19 46 | 06 80 57 19 46",
         "Adresse": "9 rue de l'estagnas, 64200 Biarritz",
-        "Contact" : "asso@soleil-bleu.com",
+        "Contact": "asso@soleil-bleu.com",
         "Déscription": "Oeuvre en faveur des populations du Haut-Atlas marocain"
     },
     {
-
-        "Nom":"ATAA Foundation",
-        "Site web" : "https://ataafoundation.com/",
+        "Nom": "ATAA Foundation",
+        "Site web": "https://ataafoundation.com/",
         "Déscription": "Est une organisation non gouvernementale (ONG) et partenaire dans le développement de la société, l'amélioration des communautés et la promotion de la participation citoyenne"
     },
     {
-
-        "Nom":"Coeur Maroc",
+        "Nom": "Coeur Maroc",
         "Tél": "06 81 03 36 54",
         "Adresse": "182 bis avenue felix faure 69003 Lyon ",
-        "Contact" : "contact@coeurmaroc.com",
+        "Contact": "contact@coeurmaroc.com",
         "Déscription": "Association franco-marocaine qui soutient matériellement les enfants orphelins, handicapés et nécessiteux du Maroc"
     },
     {
-
-        "Nom":"Enfants de la Bâdiya",
+        "Nom": "Enfants de la Bâdiya",
         "Tél": "03 80 35 45 39 | 03 80 49 01 28 ",
         "Adresse": "5, rue Carons 21380 Messigny et Vantoux ",
-        "Email" : "enfants.labadiya@orange.fr",
+        "Email": "enfants.labadiya@orange.fr",
         "Déscription": "Projets au proft des élèves déhérités du collège El Manar et de douars au Maroc"
     }
-    
 ]

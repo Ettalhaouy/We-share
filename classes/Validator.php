@@ -21,11 +21,11 @@ class Validator
 
     public function isUniq($field, $db, $table, $errorMsg)
     {
-        $record = $db->query("SELECT id FROM $table WHERE $field = ?",[$this->getField($field)])->fetch();
+        $record = $db->query("SELECT id FROM $table WHERE $field = ?", [$this->getField($field)])->fetch();
 
-        if ($record){
-         $this->errors[$field] = $errorMsg;
-       }
+        if ($record) {
+            $this->errors[$field] = $errorMsg;
+        }
     }
 
     public function isEmail($field, $errorMsg = false)
@@ -39,7 +39,7 @@ class Validator
 
     public function isConfirmed($field, $field2, $errorMsg)
     {
-        if(empty($this->getField($field)) || $this->getField($field) != $this->getField($field2)){
+        if (empty($this->getField($field)) || $this->getField($field) != $this->getField($field2)) {
             $this->errors[$field] = $errorMsg;
         }
     }
@@ -54,52 +54,61 @@ class Validator
         return $this->errors;
     }
 
-    public function accountValid($email,$password,$db,$accountType)
+    public function accountValid($email, $password, $db, $accountType)
     {
 
-    if($accountType == "1"){
-       
-        if (!empty([$this->getField($email)]) && !empty([$this->getField($password)]) ) {
+        if ($accountType == "1") {
 
-            $email = $this->getField($email);
-           
+            if (!empty([$this->getField($email)]) && !empty([$this->getField($password)])) {
 
-            $account = $db->query("SELECT * FROM users WHERE (email = :email)",['email' => $email])->fetch();
+                $email = $this->getField($email);
+
+                $account = $db->query("SELECT * FROM users WHERE (email = :email)", ['email' => $email])->fetch();
+            }
+
+            if (password_verify($this->getField($password), $account->password)) {
+
+                $res = $account;
+            } else {
+
+                $res = false;
+            }
+
+            return $res;
+
+        } else {
+
+            if (!empty([$this->getField($email)]) && !empty([$this->getField($password)])) {
+
+                $email = $this->getField($email);
+
+                $account = $db->query("SELECT * FROM organisations WHERE (email = :email)", ['email' => $email])->fetch();
+            }
+
+            if (password_verify($this->getField($password), $account->password)) {
+
+                $res = $account;
+            } else {
+
+                $res = false;
+            }
+
+            return $res;
+
         }
 
+    }
 
-        if(password_verify($this->getField($password), $account->password)){
+    public function notVerified($db, $email)
+    {
 
-            $res = $account;
-        }
-        else {
+        $verified = $db->query("SELECT verified FROM organisations WHERE email = ?", [$this->getField($email)])->fetch();
 
-            $res = false;
-        }
-       
-        return $res;
-
-  }else{
-
-        if (!empty([$this->getField($email)]) && !empty([$this->getField($password)]) ) {
-
-            $email = $this->getField($email);
-
-            $account = $db->query("SELECT * FROM organisations WHERE (email = :email)",['email' => $email])->fetch();
+        if (!$verified->verified) {
+            return true;
         }
 
-        if( password_verify($this->getField($password), $account->password)){
+        return false;
 
-            $res = $account;
-        }
-        else {
-
-            $res = false;
-        }
-
-        return $res;
-
-  }
-
-}
+    }
 }

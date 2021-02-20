@@ -11,7 +11,7 @@ if (!empty($_POST)) {
         App::redirect('signin.php');
     }
 
-    if ($validator->notVerified($db, 'email')) {
+    if ($validator->notVerified($db, 'email', $_POST['accountType'])) {
         Session::getInstance()->setFlash('danger', 'Compte non vérifié ou invalid');
         App::redirect('signin.php');
     }

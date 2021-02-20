@@ -99,16 +99,17 @@ class Validator
 
     }
 
-    public function notVerified($db, $email)
+    public function notVerified($db, $email, $accountType)
     {
+        if ($accountType == '2') {
+            $verified = $db->query("SELECT verified FROM organisations WHERE email = ?", [$this->getField($email)])->fetch();
 
-        $verified = $db->query("SELECT verified FROM organisations WHERE email = ?", [$this->getField($email)])->fetch();
+            if (!$verified->verified) {
+                return true;
+            }
 
-        if (!$verified->verified) {
-            return true;
         }
 
         return false;
-
     }
 }

@@ -45,15 +45,20 @@ if ($type_account == "1") {
                 </thead>
 
                 <?php
-// ! to implement later
-$advertisements = $db->query('SELECT COUNT(*) as nb FROM `donations` WHERE id_user = ? ', [$session_id])->fetch();
-$nb_ann = (int) $advertisements->nb;
-for ($i = 0; $i < $nb_ann; $i++) {
+
+$user = $db->query('SELECT * FROM `users` WHERE id = ? ', [$session_id])->fetch();
+$nb_donation = (int) $user->nb_donation;
+$donation = $db->query('SELECT * FROM `donations` WHERE id_user = 2 ORDER BY Date ', [$session_id])->fetchAll();
+
+
+for ($i = 0; $i < $nb_donation; $i++) {
+    $ads_dedicated = $db->query('SELECT * FROM `advertisements` WHERE id = ? ', [$donation[$i]->id_events])->fetch();
+
     echo '
                 <tr>
-                    <td>Title_var</td>
-                    <td>date_var</td>
-                    <td>date_var</td>
+                    <td>' . $ads_dedicated->title . '</td>
+                    <td>' . $donation[0]->Date . '</td>
+                    <td>' . $donation[0]->amount .' DH</td>
                 </tr>';
 }
 ?>

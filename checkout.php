@@ -11,20 +11,25 @@ $id_user = Session::getInstance()->read('id');
 $id_ads = $_GET['id'];
 $user = $db->query('SELECT * FROM users  WHERE id = ?', [$id_user])->fetch();
 $date = date("Y-m-d H:i:s");
-$new_nb_donation = $user->nb_donation + 1;
+$new_nb_donation = (int) $user->nb_donation + 1;
 
 if (!empty($_POST)) {
 
-    if (!empty($_POST['price']) && !empty($_POST['paymentMethod']) && !empty($_POST['nameCard']) && !empty($_POST['cardNumber']) && !empty($_POST['expiration']) && !empty($_POST['cvv'])) {
+    if (!empty($_POST['price']) && !empty($_POST['paymentMethod']) && !empty($_POST['nameCard']) && !empty($_POST['cardNumber']) && !empty($_POST['expiration']) && !empty($_POST['CCV'])) {
 
-        $paymensInfos = $db->query("UPDATE payInfo SET payMethod=? , NameCard=? , NumberCard=? , Expiration=? , Cvv=? WHERE id_user=?", [$_POST['paymentMethod'], $_POST['nameCard'], $_POST['cardNumber'], $_POST['expiration'], $_POST['cvv'], $id_user]);
+        $paymensInfos = $db->query("UPDATE payInfo SET payMethod=? , NameCard=? , NumberCard=? , Expiration=? , CCV=? WHERE id_user=?", [$_POST['paymentMethod'], $_POST['nameCard'], $_POST['cardNumber'], $_POST['expiration'], $_POST['CCV'], $id_user]);
 
-        $donation = $db->query("INSERT INTO donations (id_events, id_user, amount, Date)
-     VALUES (?,?,?,?)", [$id_ads, $id_user, $_POST['price'], $date]);
+        $donation = $db->query("INSERT INTO donations (id_events, id_user, amount, Date) VALUES (?,?,?,?)", [$id_ads, $id_user, $_POST['price'], $date]);
+
+        $early_nb_donation_ads = $db->query('SELECT * FROM advertisements  WHERE id = ?', [$id_ads])->fetch();
+
+        $new_nb_donation_ads = floatval($early_nb_donation_ads->nb_Donation) + floatval($_POST['price']);
+
+        $ads_nb_donation = $db->query("UPDATE advertisements SET nb_Donation=?  WHERE id=?", [$new_nb_donation_ads, $id_ads]);
 
         $nb_donation_user = $db->query("UPDATE users SET nb_donation=? WHERE id=?", [$new_nb_donation, $id_user]);
 
-        App::redirect('test.php');
+        App::redirect('payment-success.html');
     } else {
         Session::getInstance()->setFlash('danger', 'Vous devez remplir tous les champs correctement');
         App::redirect('checkout.php');
@@ -128,8 +133,8 @@ if (!empty($_POST)) {
                   </div>
                 </div>
                 <div class="col-md-3">
-                  <label for="cc-cvv" class="form-label">CVV</label>
-                  <input type="text" name="cvv" placeholder="XXX"  class="form-control" id="cc-cvv" placeholder="" required>
+                  <label for="cc-cvv" class="form-label">CCV</label>
+                  <input type="text" name="CCV" placeholder="XXX"  class="form-control" id="cc-cvv" placeholder="" required>
                   <div class="invalid-feedback">
                     Security code required
                   </div>

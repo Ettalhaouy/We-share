@@ -9,6 +9,8 @@ class Auth
         $db->query("INSERT INTO $table SET email=?,login=?,password=?", [$email, $login, $password]);
         $user_id = $db->lastInsertId();
 
+        return $user_id;
+
     }
 
 }

@@ -13,7 +13,8 @@ if (!empty($_POST)) {
         $validator->isConfirmed('password', 'password2', 'Votre mot de passe est invalide');
         if ($validator->isValid()) {
             $Auth = new Auth;
-            $Auth->register($db, $_POST['email'], $_POST['login'], $_POST['password'], "users");
+            $id = $Auth->register($db, $_POST['email'], $_POST['login'], $_POST['password'], "users");
+            $db->query("INSERT INTO payInfo SET id_user=?", [$id]);
             Session::getInstance()->setFlash('success', 'Votre compte a été créé avec succès');
             App::redirect('signin.php');
         } else {

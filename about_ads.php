@@ -46,15 +46,25 @@ $ads = $db->query('SELECT * FROM advertisements  WHERE id = ?', [$_GET['id']])->
             </p>
 
             </div>
-            <div style="margin: 20px 80px;">
-                <button type="button" class="btn btn-primary btn-block">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="25" fill="currentColor" class="bi bi-cash" viewBox="0 0 16 16">
-                        <path d="M8 10a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/>
-                        <path d="M0 4a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V4zm3 0a2 2 0 0 1-2 2v4a2 2 0 0 1 2 2h10a2 2 0 0 1 2-2V6a2 2 0 0 1-2-2H3z"/>
-                    </svg>
-                    Faire un don
-                </button>
-            </div>
+                <div style="margin: 20px 80px;">
+                    <input type="text" id="id_ads" value="<?php echo $ads->id; ?>" hidden>
+                    <button type="button" onclick="goToPay()" class="btn btn-primary btn-block" href="checkout.php">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="25" fill="currentColor" class="bi bi-cash" viewBox="0 0 16 16">
+                            <path d="M8 10a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/>
+                            <path d="M0 4a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V4zm3 0a2 2 0 0 1-2 2v4a2 2 0 0 1 2 2h10a2 2 0 0 1 2-2V6a2 2 0 0 1-2-2H3z"/>
+                        </svg>
+                        Faire un don
+                    </button>
+                    <script>
+
+                    function goToPay() {
+                    let id =  document.getElementById("id_ads").value;
+                    let link = "http://localhost/We-share/checkout.php?id=" + id;
+                    window.open(link,"_self");
+                    }
+                    </script>
+                </form>
+                </div>
             <div style="margin: 20px 80px;">
                 <button type="button" data-toggle="modal" data-target="#myModal" class="btn btn-secondary btn-block">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-share-fill" viewBox="0 0 16 16">
@@ -111,7 +121,7 @@ $ads = $db->query('SELECT * FROM advertisements  WHERE id = ?', [$_GET['id']])->
 
         <!-- Modal Header -->
         <div class="modal-header">
-          <h4 class="modal-title">Modal Heading</h4>
+          <h4 class="modal-title">Pargater</h4>
           <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
 

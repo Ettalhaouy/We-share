@@ -8,3 +8,5 @@ if (empty(Session::getInstance()->read('id'))) {
 
 Session::getInstance()->write('id_modif', $_GET["id"]);
 App::redirect('modify.php');
+
+

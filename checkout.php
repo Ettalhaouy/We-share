@@ -134,7 +134,7 @@ if (!empty($_POST)) {
   </div>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>  <script src="assets/JS/jquery.payform.min.js" charset="utf-8"></script>
-  <script src="assets/JS/script.js"></script>
+  <script src="assets/JS/checkout-validation.js"></script>
 </body>
 
 </html>

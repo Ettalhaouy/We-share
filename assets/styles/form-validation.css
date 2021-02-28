@@ -1,0 +1,45 @@
+  /* The message box is shown when the user clicks on the  Email field */
+  #emailErrorMsg {
+    display:none;
+    background:#f5f5f5;
+    position: relative;
+  }
+  #emailErrorMsg p{ font-size:small;}
+
+/* The message box is shown when the user clicks on the password field */
+  #message {
+    display:none;
+    background:#f5f5f5;
+    color: rgb(46, 107, 219);
+    position: relative;
+  }
+  #message p{ font-size:small;}
+
+  /* The message box is shown when the user clicks on the  confirme password field */
+
+  #message2 {
+    display:none;
+    background:#f5f5f5;
+    position: relative;
+  }
+  #message2 p{ font-size:small;}
+  
+  /* Add a green text color and a checkmark when the requirements are right */
+  .valid {
+    color: green;
+  }
+  
+  .valid:before {
+    position: relative;
+    left: -35px;
+  }
+  
+  /* Add a red text color and an "x" icon when the requirements are wrong */
+  .invalid {
+    color: red;
+  }
+  
+  .invalid:before {
+    position: relative;
+    left: -35px;
+  }

@@ -41,6 +41,7 @@ if (!empty($_POST)) {
 
 <?php include 'layouts/login_header.html';?>
     <title>S'inscrire | We-Share</title>
+    <link rel="stylesheet" type="text/css" href="assets/styles/form-validation.css">
 </head>
 
   <body class="text-center">
@@ -68,12 +69,16 @@ if (!empty($_POST)) {
 
     <label for="inputEmail" class="visually-hidden">Adresse e-mail</label>
     <input type="email" id="inputEmail" name="email" class="form-control" placeholder="Adresse e-mail" required autofocus>
+    
+    <div id="emailErrorMsg" class="col-md-auto">
+      <p id="emailError" class="invalid"><b>Email format must be correct</b></p>
+    </div>
 
     <label for="inputPassword" class="visually-hidden">Mot de passe</label>
-    <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Mot de passe" required>
+    <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Mot de passe" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required >
 
     <label for="inputPassword2" class="visually-hidden">Confirmer le Mot de passe</label>
-    <input type="password" id="inputPassword2" name="password2" class="form-control" placeholder="Confirmer le Mot de passe" required>
+    <input type="password" id="inputPassword2" name="password2" class="form-control" placeholder="Confirmer le Mot de passe" required >
 
     <div class="input-group mb-3">
       <select class="form-select" id="inputAcountType" name="accountType" required>
@@ -82,15 +87,20 @@ if (!empty($_POST)) {
         <option value="2">Organisationnel</option>
       </select>
     </div>
-
-
-
+    <div id="message" class="col-md-auto">
+      <h6>Password must contain the following:</h6>
+      <p id="letter" class="invalid"><b>lowercase letter</b></p>
+      <p id="capital" class="invalid"><b>capital (uppercase) letter</b></p>
+      <p id="number" class="invalid"><b>number</b></p>
+      <p id="length" class="invalid"><b>Minimum 8 characters</b></p>
+    </div>
+    <div id="message2" class="col-md-auto">
+      <p id="pwdMatch" class="invalid"><b>Password must be the same</b></p>
+    </div>
     <button class="w-100 btn btn-lg btn-primary" type="submit">S'inscrire </button>
     <p class="mt-5 mb-3 text-muted">&copy; We Share 2021</p>
   </form>
 </main>
-
-
-
+<script src="assets/JS/form-validation.js"></script>
   </body>
 </html>

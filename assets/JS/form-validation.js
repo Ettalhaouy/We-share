@@ -102,4 +102,14 @@ myInput.onkeyup = function() {
         length.classList.add("invalid");
     }
   }
- 
+  //Validate button
+    hideButton();
+    function hideButton(){
+      var button = document.getElementById("signUpBtn");
+      if(myInput.value.match(lowerCaseLetters) && myInput.value.match(upperCaseLetters) && myInput.value.match(numbers) && myInput.value.length >= 8 && myInput.value == myInput2.value){
+        button.disabled = false;
+      }else{ 
+        button.disabled = true;
+
+      }
+    }

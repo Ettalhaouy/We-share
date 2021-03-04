@@ -13,7 +13,7 @@ h1{
     font-family:cursive; font-size: x-large;
   }
   .navbar-brand img{
-    margin-left: 50px;
+    margin-left: auto;
   }
   .row-cols-auto{
       position: relative;

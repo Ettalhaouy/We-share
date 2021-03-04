@@ -1,0 +1,21 @@
+h1{
+    padding-top: 150px;
+}
+#intro {
+    background-image: url("assets/images/image.jpg");
+    height: 100vh;
+    background-repeat: no-repeat;
+  }
+  .navbar .nav-link {
+    color: #fff !important;
+  }
+  .navbar-brand{
+    font-family:cursive; font-size: x-large;
+  }
+  .navbar-brand img{
+    margin-left: 50px;
+  }
+  .row-cols-auto{
+      position: relative;
+      margin:auto;
+  }

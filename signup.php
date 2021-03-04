@@ -97,7 +97,8 @@ if (!empty($_POST)) {
     <div id="message2" class="col-md-auto">
       <p id="pwdMatch" class="invalid"><b>Password must be the same</b></p>
     </div>
-    <button id="signUpBtn" class="w-100 btn btn-lg btn-primary" type="submit">S'inscrire </button>
+    <button id="signUpBtn" class="w-100 btn btn-lg btn-primary" type="submit">S'inscrire </button><br>
+    <a href="signin.php" style="margin-top:20px;">Se connecter</a>
     <p class="mt-5 mb-3 text-muted">&copy; We Share 2021</p>
   </form>
 </main>

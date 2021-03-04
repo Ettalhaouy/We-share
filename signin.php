@@ -77,7 +77,8 @@ if (!empty($_POST)) {
       <p id="length" class="invalid"><b>Minimum 8 characters</b></p>
     </div>
     
-    <button class="w-100 btn btn-lg btn-primary" type="submit">Se connecter </button>
+    <button class="w-100 btn btn-lg btn-primary" type="submit">Se connecter </button><br>
+    <a href="signup.php" style="margin-top:20px;">S'inscrire</a>
     <p class="mt-5 mb-3 text-muted">&copy; We Share 2021</p>
   </form>
 </main>

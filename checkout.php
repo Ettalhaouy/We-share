@@ -69,7 +69,7 @@ if (!empty($_POST)) {
       <?php if (Session::getInstance()->hasFlashes()) : ?>
         <?php foreach (Session::getInstance()->getFlashes() as $type => $message) : ?>
           <div class="alert alert-<?= $type; ?>">
-            <li><?= $message; ?> </li>
+            <div><?= $message; ?> </div>
           </div>
         <?php endforeach; ?>
       <?php endif; ?>

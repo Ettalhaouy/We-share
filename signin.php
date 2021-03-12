@@ -1,16 +1,18 @@
-
 <?php
 require 'inc/Autoloader.php';
 
+
 if (!empty($_POST)) {
+    //connect to db
     $db = App::getDatabase();
     $validator = new Validator($_POST);
 
     if ($_POST['accountType'] == "Type de compte...") {
+      //redirection with msg flash
         Session::getInstance()->setFlash('danger', 'Vous devez préciser le type de compte');
         App::redirect('signin.php');
     }
-
+    //verifications
     if ($validator->notVerified($db, 'email', $_POST['accountType'])) {
         Session::getInstance()->setFlash('danger', 'Compte non vérifié ou invalid');
         App::redirect('signin.php');
@@ -46,7 +48,9 @@ if (!empty($_POST)) {
     <!-- flash controle -->
     <?php if (Session::getInstance()->hasFlashes()): ?>
      <?php foreach (Session::getInstance()->getFlashes() as $type => $message): ?>
-       <div class="alert alert-<?=$type;?>"><li><?=$message;?> </li></div>
+       <div class="alert alert-<?=$type;?>">
+          <div><?=$message;?></div>
+       </div>
      <?php endforeach;?>
    <?php endif;?>
 

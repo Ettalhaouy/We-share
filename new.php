@@ -10,10 +10,10 @@ if (empty(Session::getInstance()->read('id'))) {
 if (!empty($_POST) && !empty($_FILES)) {
     $db = App::getDatabase();
     $errors = [];
+
     if (!empty($_POST['title']) && !empty($_POST['description']) && !empty($_FILES['img'])) {
-
+        $Auth = new Auth;
         $session_id = Session::getInstance()->read('id');
-
         $name_file = $_FILES['img']['name'];
         $name_extension = strrchr($name_file, ".");
         $extensions_autorisation = array('.png', '.PNG', '.jpg', '.JPG');
@@ -21,17 +21,13 @@ if (!empty($_POST) && !empty($_FILES)) {
         $file_dest = 'uploads/' . $name_file;
         $date = date("Y-m-d H:i:s");
 
-        if (in_array($name_extension, $extensions_autorisation)) {
-            if (move_uploaded_file($file_tmp_name, $file_dest)) {
-
-                $insert = $db->query("INSERT INTO advertisements (title, photo, Description,date,id_organisaton)
-        VALUES (?,?,?,?,?)", [$_POST['title'], $file_dest, $_POST['description'], $date, $session_id]);
+        if($Auth->insertNewAnnounceData($db,$date,$session_id,$name_extension,$extensions_autorisation,$file_dest,$file_tmp_name)){
 
                 Session::getInstance()->setFlash('success', 'L\'Annonce a été crée avec succés');
                 App::redirect('my.php');
 
             }
-        } else {
+            else {
             $errors['img'] = "Pour l'image seuls les extensions PNG ou JPEG sont autorisées";
         }
     } else {
@@ -121,10 +117,9 @@ if (!empty($_POST) && !empty($_FILES)) {
       <div class="alert alert-danger">
         <p>Votre nouvelle annonce a connu des problèmes lors de la création :</p>
         <?php foreach ($errors as $error): ?>
-          <ul>
-            <li><?=$error;?></li>
+            <div><?=$error;?></div>
           <?php endforeach;?>
-          </ul>
+
       </div>
     <?php endif;?>
 

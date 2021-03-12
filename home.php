@@ -28,7 +28,9 @@ $nb_ads = (int) $nb_advertisements->nb;
     <!-- flash controle -->
     <?php if (Session::getInstance()->hasFlashes()): ?>
      <?php foreach (Session::getInstance()->getFlashes() as $type => $message): ?>
-       <div class="alert alert-<?=$type;?>"><li><?=$message;?> </li></div>
+        <div class="alert alert-<?=$type;?>">
+          <div><?=$message;?> </div>
+        </div>
      <?php endforeach;?>
    <?php endif;?>
 

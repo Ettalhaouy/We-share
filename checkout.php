@@ -8,28 +8,15 @@ if (empty(Session::getInstance()->read('id'))) {
 
 $db = App::getDatabase();
 $id_user = Session::getInstance()->read('id');
+$Auth = new Auth;
 $id_ads = $_GET['id'];
 $user = $db->query('SELECT * FROM users  WHERE id = ?', [$id_user])->fetch();
 $date = date("Y-m-d H:i:s");
 $new_nb_donation = (int) $user->nb_donation + 1;
 
 if (!empty($_POST)) {
-
-  if (!empty($_POST['price']) && !empty($_POST['nameCard']) && !empty($_POST['cardNumber']) && !empty($_POST['expiration']) && !empty($_POST['CCV'])) {
-
-    $paymensInfos = $db->query("UPDATE payInfo SET NameCard=? , NumberCard=? , Expiration=? , CCV=? WHERE id_user=?", [$_POST['nameCard'], $_POST['cardNumber'], $_POST['expiration'], $_POST['CCV'], $id_user]);
-
-    $donation = $db->query("INSERT INTO donations (id_events, id_user, amount, Date) VALUES (?,?,?,?)", [$id_ads, $id_user, $_POST['price'], $date]);
-
-    $early_nb_donation_ads = $db->query('SELECT * FROM advertisements  WHERE id = ?', [$id_ads])->fetch();
-
-    $new_nb_donation_ads = floatval($early_nb_donation_ads->nb_Donation) + floatval($_POST['price']);
-
-    $ads_nb_donation = $db->query("UPDATE advertisements SET nb_Donation=?  WHERE id=?", [$new_nb_donation_ads, $id_ads]);
-
-    $nb_donation_user = $db->query("UPDATE users SET nb_donation=? WHERE id=?", [$new_nb_donation, $id_user]);
-
-    App::redirect('payment-success.html');
+    if($Auth->isValidInsertPaymentsInfos($db,$new_nb_donation,$id_ads,$id_user,$date)){
+      App::redirect('payment-success.html');
   } else {
     Session::getInstance()->setFlash('danger', 'Vous devez remplir tous les champs correctement');
     App::redirect('checkout.php');
@@ -60,7 +47,6 @@ if (!empty($_POST)) {
 
 <body class="bg-light">
   <div class="container">
-<<<<<<< HEAD
     <main>
       <div class="py-5 text-center">
         <img class="mb-4 rounded-circle mx-auto d-block" src="assets/images/We-Share-logo.png" alt="" width="172" height="172" style="margin-top: 30px;">
@@ -70,7 +56,7 @@ if (!empty($_POST)) {
       <?php if (Session::getInstance()->hasFlashes()) : ?>
         <?php foreach (Session::getInstance()->getFlashes() as $type => $message) : ?>
           <div class="alert alert-<?= $type; ?>">
-            <div><?= $message; ?> </div>
+            <div><?= $message; ?></div>
           </div>
         <?php endforeach; ?>
       <?php endif; ?>
@@ -118,22 +104,6 @@ if (!empty($_POST)) {
                 <div class="invalid-feedback">
                   Expiration date required
                 </div>
-=======
-      <main>
-        <!-- flash controle -->
-        <?php if (Session::getInstance()->hasFlashes()) : ?>
-          <?php foreach (Session::getInstance()->getFlashes() as $type => $message) : ?>
-            <div class="alert alert-<?= $type; ?>">
-              <li><?= $message; ?> </li>
-            </div>
-          <?php endforeach; ?>
-        <?php endif; ?>
-        <div class="creditCardForm">
-              <img class="mb-4 rounded-circle mx-auto d-block" src="assets/images/We-Share-logo.png" alt="" width="172" height="172" style="margin-top: 30px;">
-
-              <div class="heading">
-                  <h1>Confirm Purchase</h1>
->>>>>>> 567560ee9c0da4fe22be026a1286e80e1b5689a5
               </div>
               <div class="payment">
                   <form>

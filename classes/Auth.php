@@ -3,36 +3,30 @@
 class Auth
 {
 
-    public function register($db, $email, $login, $password, $table,$type = null)
+    public function register($db, $email, $login, $password, $rib,$table)
     {
         $password = password_hash($password, PASSWORD_BCRYPT);
         $db->query("INSERT INTO $table SET email=?,login=?,password=?", [$email, $login, $password]);
-        $user_id = $db->lastInsertId();
+        $id_org = $db->lastInsertId();
 
-        if($type){
-            $db->query("INSERT INTO payInfo SET id_user=?", [$user_id]);
-        }
+        $db->query("INSERT INTO payInfo SET RIB=?,id_org=?", [$rib,$id_org]);
 
-        return $user_id;
+        return $id_org;
 
     }
 
-    public function isValidInsertPaymentsInfos($db,$new_nb_donation,$id_ads,$id_user,$date){
+    public function isValidInsertPaymentsInfos($db,$id_ads,$date){
 
         if (!empty($_POST['price']) && !empty($_POST['nameCard']) && !empty($_POST['cardNumber']) && !empty($_POST['expiration']) && !empty($_POST['CCV'])) {
 
-            $paymensInfos = $db->query("UPDATE payInfo SET NameCard=? , NumberCard=? , Expiration=? , CCV=? WHERE id_user=?", [$_POST['nameCard'], $_POST['cardNumber'], $_POST['expiration'], $_POST['CCV'], $id_user]);
-        
-            $donation = $db->query("INSERT INTO donations (id_events, id_user, amount, Date) VALUES (?,?,?,?)", [$id_ads, $id_user, $_POST['price'], $date]);
+            $db->query("INSERT INTO donations (id_events, amount, Date) VALUES (?,?,?)", [$id_ads, $_POST['price'], $date]);
         
             $early_nb_donation_ads = $db->query('SELECT * FROM advertisements  WHERE id = ?', [$id_ads])->fetch();
         
             $new_nb_donation_ads = floatval($early_nb_donation_ads->nb_Donation) + floatval($_POST['price']);
         
-            $ads_nb_donation = $db->query("UPDATE advertisements SET nb_Donation=?  WHERE id=?", [$new_nb_donation_ads, $id_ads]);
+            $db->query("UPDATE advertisements SET nb_Donation=?  WHERE id=?", [$new_nb_donation_ads, $id_ads]);
         
-            $nb_donation_user = $db->query("UPDATE users SET nb_donation=? WHERE id=?", [$new_nb_donation, $id_user]);
-
             return true;
         }else{
             return false;

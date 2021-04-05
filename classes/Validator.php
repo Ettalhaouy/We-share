@@ -54,60 +54,35 @@ class Validator
         return $this->errors;
     }
 
-    public function accountValid($email, $password, $db, $accountType)
+    public function accountValid($email, $password, $db)
     {
 
-        if ($accountType == "1") {
 
-            if (!empty([$this->getField($email)]) && !empty([$this->getField($password)])) {
+        if (!empty([$this->getField($email)]) && !empty([$this->getField($password)])) {
 
-                $email = $this->getField($email);
+            $email = $this->getField($email);
 
-                $account = $db->query("SELECT * FROM users WHERE (email = :email)", ['email' => $email])->fetch();
-            }
-
-            if (password_verify($this->getField($password), $account->password)) {
-
-                $res = $account;
-            } else {
-
-                $res = false;
-            }
-
-            return $res;
-
-        } else {
-
-            if (!empty([$this->getField($email)]) && !empty([$this->getField($password)])) {
-
-                $email = $this->getField($email);
-
-                $account = $db->query("SELECT * FROM organisations WHERE (email = :email)", ['email' => $email])->fetch();
-            }
-
-            if (password_verify($this->getField($password), $account->password)) {
-
-                $res = $account;
-            } else {
-
-                $res = false;
-            }
-
-            return $res;
-
+            $account = $db->query("SELECT * FROM organisations WHERE (email = :email)", ['email' => $email])->fetch();
         }
 
+        if (password_verify($this->getField($password), $account->password)) {
+
+            $res = $account;
+        } else {
+
+            $res = false;
+        }
+
+        return $res;
     }
 
-    public function notVerified($db, $email, $accountType)
+    public function notVerified($db, $email)
     {
-        if ($accountType == '2') {
-            $verified = $db->query("SELECT verified FROM organisations WHERE email = ?", [$this->getField($email)])->fetch();
 
-            if (!$verified->verified) {
-                return true;
-            }
+        $verified = $db->query("SELECT verified FROM organisations WHERE email = ?", [$this->getField($email)])->fetch();
 
+        if (!$verified->verified) {
+            return true;
         }
 
         return false;

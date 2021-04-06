@@ -5,38 +5,19 @@ if (!empty($_POST)) {
   $errors = array();
   $db = App::getDatabase();
   $validator = new Validator($_POST);
-  //validations
-  if ($_POST['accountType'] == "1") {
-    //users
-    if ($validator->isEmail('email', "Votre email est invalide")) {
-      $validator->isUniq('email', $db, 'users', "Cet email est déja utilisé pour un autre compte");
-    }
-    $validator->isConfirmed('password', 'password2', 'Votre mot de passe est invalide');
-    if ($validator->isValid()) {
-      $Auth = new Auth;
-      $id = $Auth->register($db, $_POST['email'], $_POST['login'], $_POST['password'], "users");
-      Session::getInstance()->setFlash('success', 'Votre compte a été créé avec succès');
-      App::redirect('signin.php');
-    } else {
-      $errors = $validator->getErrors();
-    }
-  } else if ($_POST['accountType'] == "2") {
-    //organizations
+
     if ($validator->isEmail('email', "Votre email est invalide")) {
       $validator->isUniq('email', $db, 'organisations', "Cet email est déja utilisé pour un autre compte");
     }
-    $validator->isConfirmed('password', 'password2', 'Votre mot de passe est invalide');
+    $validator->isConfirmed('password', 'password2', 'Le mot de passe est invalide');
 
     if ($validator->isValid()) {
       $Auth = new Auth;
-      $Auth->register($db, $_POST['email'], $_POST['login'], $_POST['password'], "organisations");
+      $Auth->register($db, $_POST['email'], $_POST['login'], $_POST['password'], $_POST['rib'],"organisations");
       App::redirect('layouts/account_created.html');
     } else {
       $errors = $validator->getErrors();
     }
-  } else {
-    $errors[] = "Vous devez préciser le type de compte";
-  }
 }
 ?>
 
@@ -72,6 +53,10 @@ if (!empty($_POST)) {
       <div id="emailErrorMsg" class="col-md-auto">
         <p id="emailError" class="invalid"><b>Email format must be correct</b></p>
       </div>
+      
+      <label for="rib" class="visually-hidden">Rib number</label>
+      <input type="text" id="rib" name="rib" class="form-control" placeholder="Numéro RIB" minlength="23" maxlength="23" required autofocus>
+
 
       <label for="inputPassword" class="visually-hidden">Mot de passe</label>
       <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Mot de passe" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required>
@@ -79,13 +64,6 @@ if (!empty($_POST)) {
       <label for="inputPassword2" class="visually-hidden">Confirmer le Mot de passe</label>
       <input type="password" id="inputPassword2" name="password2" class="form-control" placeholder="Confirmer le Mot de passe" required>
 
-      <div class="input-group mb-3">
-        <select class="form-select" id="inputAcountType" name="accountType" required>
-          <option selected hidden>Type de compte...</option>
-          <option value="1">Personnel</option>
-          <option value="2">Organisationnel</option>
-        </select>
-      </div>
       <div id="message" class="col-md-auto">
         <h6>Password must contain the following:</h6>
         <p id="letter" class="invalid"><b>lowercase letter</b></p>

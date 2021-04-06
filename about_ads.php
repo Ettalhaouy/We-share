@@ -1,10 +1,6 @@
 <?php
 require 'inc/Autoloader.php';
 
-if (empty(Session::getInstance()->read('id'))) {
-    Session::getInstance()->setFlash('danger', 'Vous devez être connecté');
-    App::redirect('signin.php');
-}
 $db = App::getDatabase();
 $ads = $db->query('SELECT * FROM advertisements  WHERE id = ?', [$_GET['id']])->fetch();
 

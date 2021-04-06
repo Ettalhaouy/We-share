@@ -1,22 +1,15 @@
 <?php
 require 'inc/Autoloader.php';
 
-if (empty(Session::getInstance()->read('id'))) {
-  Session::getInstance()->setFlash('danger', 'Vous devez être connecté');
-  App::redirect('signin.php');
-}
 
 $db = App::getDatabase();
-$id_user = Session::getInstance()->read('id');
 $Auth = new Auth;
 $id_ads = $_GET['id'];
-$user = $db->query('SELECT * FROM users  WHERE id = ?', [$id_user])->fetch();
 $date = date("Y-m-d H:i:s");
-$new_nb_donation = (int) $user->nb_donation + 1;
 
 if (!empty($_POST)) {
-    if($Auth->isValidInsertPaymentsInfos($db,$new_nb_donation,$id_ads,$id_user,$date)){
-      App::redirect('payment-success.html');
+    if($Auth->isValidInsertPaymentsInfos($db,$id_ads,$date)){
+      App::redirect('layouts/payment-success.html');
   } else {
     Session::getInstance()->setFlash('danger', 'Vous devez remplir tous les champs correctement');
     App::redirect('checkout.php');
@@ -29,10 +22,10 @@ if (!empty($_POST)) {
 <html lang="en">
 
 <head>
-  <link rel="apple-touch-icon" sizes="180x180" href="../assets/images/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="../assets/images/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/favicon-16x16.png">
-  <link rel="mask-icon" href="../assets/images/safari-pinned-tab.svg" color="#5bbad5">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon-16x16.png">
+  <link rel="mask-icon" href="assets/images/safari-pinned-tab.svg" color="#5bbad5">
   <meta name="msapplication-TileColor" content="#da532c">
   <meta name="theme-color" content="#ffffff">
   <meta charset="utf-8">
@@ -65,18 +58,23 @@ if (!empty($_POST)) {
           <div class="col-md-7 col-lg-8">
             <h3 class="d-flex justify-content-between align-items-center mb-3">
               <span class="mb-3">Votre enchère</span>
-              <span class="badge bg-secondary rounded-pill"><?php echo $new_nb_donation; ?></span>
             </h3>
             <h4 class="mb-3">Prix</h4>
             <ul class="list-group mb-3">
               <li class="list-group-item d-flex justify-content-between lh-sm">
                 <div class="col-12">
-                  <input type="number" name="price" class="form-control" id="firstName" placeholder="0.00 DH" step=".5" min="0" value="" required>
+                  <input type="number" onchange="changePrice()" id="priceSelected" name="price" class="form-control" placeholder="0.00 DH" step=".5" min="0" value="" required>
                 </div>
               </li>
               <li class="list-group-item d-flex justify-content-between">
                 <span>Total (DH)</span>
-                <strong>12 DH</strong>
+                <span id="changeable">0.00</span>
+                <script>
+                  function changePrice() {
+                    var x = document.getElementById("priceSelected").value;
+                    document.getElementById("changeable").innerHTML =  x;
+                  }
+                </script>
               </li>
             </ul>
           </div>
@@ -106,7 +104,6 @@ if (!empty($_POST)) {
                 </div>
               </div>
               <div class="payment">
-                  <form>
                       <div class="form-group owner">
                           <label for="owner">Owner</label>
                           <input type="text" class="form-control" name="nameCard" id="owner">
@@ -153,7 +150,6 @@ if (!empty($_POST)) {
                       <div class="form-group" id="pay-now">
                           <button type="submit" class="btn btn-default" id="confirm-purchase">Confirm</button>
                       </div>
-                  </form>
               </div>
           </div>
     </div>
@@ -162,7 +158,7 @@ if (!empty($_POST)) {
       <p class="mb-1">&copy; 2021 We-Share</p>
     </footer>
   </div>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <scrip src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></scrip>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>  <script src="assets/JS/jquery.payform.min.js" charset="utf-8"></script>
   <script src="assets/JS/checkout-validation.js"></script>
 </body>

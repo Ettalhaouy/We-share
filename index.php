@@ -1,55 +1,43 @@
 <?php
 require 'inc/Autoloader.php';
 
-if (empty(Session::getInstance()->read('id'))) {
-    Session::getInstance()->setFlash('danger', 'Vous devez être connecté');
-    App::redirect('signin.php');
-}
-
 $type_account = Session::getInstance()->read('genre');
 
-if ($type_account == "1") {
-    $session_id = Session::getInstance()->read('id');
-    $db = App::getDatabase();
-    $account = $db->query('SELECT login FROM users  WHERE id = ?', [$_SESSION['id']])->fetch();
-} else {
-    $session_id = Session::getInstance()->read('id');
-    $db = App::getDatabase();
-    $account = $db->query('SELECT login FROM organisations  WHERE id = ?', [$_SESSION['id']])->fetch();
-}
+
+$db = App::getDatabase();
 
 $advertisements = $db->query('SELECT * FROM advertisements', [])->fetchAll();
 $nb_advertisements = $db->query('SELECT COUNT(*) as nb FROM advertisements ', [])->fetch();
 $nb_ads = (int) $nb_advertisements->nb;
 
 ?>
-<?php include 'layouts/private_header.html';?>
+<?php include 'layouts/private_header.html'; ?>
 
-    <!-- flash controle -->
-    <?php if (Session::getInstance()->hasFlashes()): ?>
-     <?php foreach (Session::getInstance()->getFlashes() as $type => $message): ?>
-        <div class="alert alert-<?=$type;?>">
-          <div><?=$message;?> </div>
-        </div>
-     <?php endforeach;?>
-   <?php endif;?>
+<!-- flash controle -->
+<?php if (Session::getInstance()->hasFlashes()) : ?>
+  <?php foreach (Session::getInstance()->getFlashes() as $type => $message) : ?>
+    <div class="alert alert-<?= $type; ?>">
+      <div><?= $message; ?> </div>
+    </div>
+  <?php endforeach; ?>
+<?php endif; ?>
 
-<?php if ($nb_ads > 0): ?>
+<?php if ($nb_ads > 0) : ?>
 
-    <!-- Page Content -->
+  <!-- Page Content -->
   <div class="container" style="margin-top: 3%;">
     <div class="row justify-content-around">
 
-<?php
+      <?php
 
-for ($i = 0; $i < $nb_ads; $i++) {
+      for ($i = 0; $i < $nb_ads; $i++) {
 
-    $id = (int) $advertisements[$i]->id;
-    $current_ads = $db->query('SELECT title,nb_Donation,id_organisaton,photo,date,SUBSTRING(Description, 1, 160) as text FROM `advertisements` WHERE id = ?; ', [$id])->fetch();
-    $orgId = (int) $current_ads->id_organisaton;
-    $org = $db->query('SELECT * FROM organisations WHERE id = ?; ', [$current_ads->id_organisaton])->fetch();
-    if ($type_account == "1") {
-        echo '
+        $id = (int) $advertisements[$i]->id;
+        $current_ads = $db->query('SELECT title,nb_Donation,id_organisaton,photo,date,SUBSTRING(Description, 1, 160) as text FROM `advertisements` WHERE id = ?; ', [$id])->fetch();
+        $orgId = (int) $current_ads->id_organisaton;
+        $org = $db->query('SELECT * FROM organisations WHERE id = ?; ', [$current_ads->id_organisaton])->fetch();
+        if (empty(Session::getInstance()->read('id'))) {
+          echo '
 
       <div class="col-lg-5 mb-3 shadow p-3 mb-5 bg-white rounded align-items-center">
         <div class="card h-100">
@@ -156,8 +144,9 @@ for ($i = 0; $i < $nb_ads; $i++) {
         </div>
       </div>
 
-      ';} else {
-        echo '
+      ';
+        } else {
+          echo '
       <div class="col-lg-5 mb-3 shadow p-3 mb-5 bg-white rounded align-items-center">
       <div class="card h-100">
       <form method="POST" action="about_ads.php">
@@ -262,25 +251,25 @@ for ($i = 0; $i < $nb_ads; $i++) {
     </div>
 
     ';
-    }
-}
-?>
+        }
+      }
+      ?>
 
     </div>
   </div>
 
-<?php else: ?>
+<?php else : ?>
   <style>
-
-    .display-3{
+    .display-3 {
       margin: 15%;
 
     }
   </style>
   <center>
-  <h1 class="display-3">Pas de contenu pour le moment !</h1>
-  <center>
-<?php endif;?>
+    <h1 class="display-3">Pas de contenu pour le moment !</h1>
+    <center>
+    <?php endif; ?>
 
-</body>
-</html>
+    </body>
+
+    </html>

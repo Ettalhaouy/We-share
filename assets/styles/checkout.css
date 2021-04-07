@@ -17,6 +17,7 @@ body{
     overflow: hidden;
     padding: 25px;
     color: #4c4e56;
+    margin-top: 0px;
 }
 
 .creditCardForm label {

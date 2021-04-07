@@ -54,7 +54,13 @@ $(function() {
             alert("Wrong card number");
         else if (!isCvvValid) 
             alert("Wrong CVV");
-        else 
-            ;
+        else {
+            
+            let element = document.createElement("input");
+            element.setAttribute("type", "submit");
+            element.setAttribute("value", "Confirmer");
+            element.setAttribute("class", "btn btn-default");
+            document.getElementById("pay-now").appendChild(element);
+        }
     });
 });

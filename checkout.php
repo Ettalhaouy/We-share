@@ -56,6 +56,7 @@ if (!empty($_POST)) {
     <title>Checkout</title>
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/css/bootstrap.min.css" integrity="sha384-DhY6onE6f3zzKbjUPRc2hOzGAdEf4/Dz+WJwBvEYL/lkkIsI3ihufq9hk9K4lVoK" crossorigin="anonymous">
+
     <link rel="stylesheet" type="text/css" href="assets/styles/checkout.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -96,7 +97,7 @@ if (!empty($_POST)) {
 
 <div class="tab-content">
 <div class="tab-pane fade show active" id="nav-tab-card">
-	<form method="POST" action="">
+	<form method="POST" action="" id="myCheckoutForm">
         <div class="form-group owner">
             <label for="owner">Owner</label>
             <input type="text" name="owner" class="form-control" id="owner">
@@ -145,7 +146,7 @@ if (!empty($_POST)) {
             <img src="assets/images/amex.jpg" id="amex">
         </div>
         <div class="form-group" id="pay-now">
-            <button type="submit" class="btn btn-default" id="confirm-purchase">Confirm</button>
+            <button type="button" class="btn btn-default" id="confirm-purchase">Vérifier</button>
         </div>
 	</form>
 </div> 

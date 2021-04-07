@@ -6,7 +6,31 @@ $db = App::getDatabase();
 $Auth = new Auth;
 $id_ads = $_GET['id'];
 $date = date("Y-m-d H:i:s");
+$id_org = $db->query("SELECT * from advertisements where id=?",[$id_ads])->fetch()->id_organisaton;;
+$rib = $db->query("SELECT * FROM payInfo WHERE id_org=?",[$id_org])->fetch()->RIB;
 
+$num_to_bank = substr($rib,0,3);
+$bank_name = "";
+switch ($num_to_bank) {
+  case '007':
+    $bank_name = "Attijariwafa Bank";
+    break;
+  case '011':
+    $bank_name = "BMCE Bank";
+    break;
+  case '021':
+    $bank_name = "Credit du Maroc";
+    break;
+  case '230':
+    $bank_name = "CIH";
+    break;
+  case '013':
+    $bank_name = "BMCI BNP Paribas";
+    break;
+  default:
+    $bank_name = "Banque Populaire";
+    break;
+}
 if (!empty($_POST)) {
     if($Auth->isValidInsertPaymentsInfos($db,$id_ads,$date)){
       App::redirect('layouts/payment-success.html');
@@ -129,16 +153,12 @@ if (!empty($_POST)) {
 <div class="tab-pane fade show" id="nav-tab-bank">
 <p>Bank accaunt details</p>
 <dl class="param">
-  <dt>BANK: </dt>
-  <dd> THE WORLD BANK</dd>
+  <dt>NOM DU BANK: </dt>
+  <dd><?=$bank_name;?></dd>
 </dl>
 <dl class="param">
-  <dt>Accaunt number: </dt>
-  <dd> 12345678912345</dd>
-</dl>
-<dl class="param">
-  <dt>IBAN: </dt>
-  <dd> 123456789</dd>
+  <dt>RIB: </dt>
+  <dd><?=$rib;?></dd>
 </dl>
 <p><strong>Note:</strong> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
 tempor incididunt ut labore et dolore magna aliqua. </p>

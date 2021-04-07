@@ -1,4 +1,3 @@
-<!--
 <?php
 require 'inc/Autoloader.php';
 
@@ -17,7 +16,6 @@ if (!empty($_POST)) {
   }
 }
 ?>
--->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -39,7 +37,7 @@ if (!empty($_POST)) {
   <link rel="stylesheet" type="text/css" href="assets/styles/checkout.css">
 </head>
 <body>
-  <!-- flash controle 
+  <!-- flash controle -->
   <?php if (Session::getInstance()->hasFlashes()) : ?>
     <?php foreach (Session::getInstance()->getFlashes() as $type => $message) : ?>
       <div class="alert alert-<?= $type; ?>">
@@ -47,7 +45,7 @@ if (!empty($_POST)) {
       </div>
     <?php endforeach; ?>
   <?php endif; ?>
-    -->
+    
           <div class="container-fluid">
               <div class="creditCardForm">
                   <div class="heading">

@@ -17,20 +17,24 @@ class Auth
 
     public function isValidInsertPaymentsInfos($db,$id_ads,$date){
 
-        if (!empty($_POST['price']) && !empty($_POST['nameCard']) && !empty($_POST['cardNumber']) && !empty($_POST['expiration']) && !empty($_POST['CCV'])) {
+        if (!empty($_POST['owner']) && !empty($_POST['cvv']) && !empty($_POST['cardNumber']) && !empty($_POST['expMonth']) && !empty($_POST['expDay'])) {
 
-            $db->query("INSERT INTO donations (id_events, amount, Date) VALUES (?,?,?)", [$id_ads, $_POST['price'], $date]);
+            $db->query("INSERT INTO donations (id_events, amount, Date) VALUES (?,?,?)", [$id_ads,10.00, $date]);
         
             $early_nb_donation_ads = $db->query('SELECT * FROM advertisements  WHERE id = ?', [$id_ads])->fetch();
         
-            $new_nb_donation_ads = floatval($early_nb_donation_ads->nb_Donation) + floatval($_POST['price']);
+            $new_nb_donation_ads = $early_nb_donation_ads->nb_Donation + 10.00;
         
             $db->query("UPDATE advertisements SET nb_Donation=?  WHERE id=?", [$new_nb_donation_ads, $id_ads]);
         
-            return true;
+            $req = true;
+
         }else{
-            return false;
+
+            $req = false;
         }
+
+        return $req;
 
     }
 

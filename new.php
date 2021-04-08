@@ -16,7 +16,7 @@ if (!empty($_POST) && !empty($_FILES)) {
         $session_id = Session::getInstance()->read('id');
         $name_file = $_FILES['img']['name'];
         $name_extension = strrchr($name_file, ".");
-        $extensions_autorisation = array('.png', '.PNG', '.jpg', '.JPG');
+        $extensions_autorisation = array('.png', '.PNG', '.jpg', '.JPG', '.jpeg', '.JPEG');
         $file_tmp_name = $_FILES['img']['tmp_name'];
         $file_dest = 'uploads/' . $name_file;
         $date = date("Y-m-d H:i:s");
@@ -28,7 +28,7 @@ if (!empty($_POST) && !empty($_FILES)) {
 
             }
             else {
-            $errors['img'] = "Pour l'image seuls les extensions PNG ou JPEG sont autorisées";
+            $errors['img'] = "Pour l'image seuls les extensions PNG , JPG ou JPG sont autorisées";
         }
     } else {
         $errors[] = "Tous les champs doivent être remplis";

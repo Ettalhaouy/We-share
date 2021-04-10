@@ -89,7 +89,10 @@ body{
     padding: 10px;
     margin-right: 15px;
 }
-
+.nav-item :hover{
+    background-color: #0d96e6;
+    color: white;
+}
 .transparent {
     opacity: 0.2;
 }

@@ -81,100 +81,94 @@ if (!empty($_POST)) {
         <div class="heading">
             <img class="mb-4 rounded-circle mx-auto d-block" src="assets/images/We-Share-logo.png" alt="" width="172" height="172" style="margin-top: 30px;">
             <h1>Confirm Purchase</h1>
-          </div>
-
-<article class="card">
-    <div class="payment">
-
-<ul class="nav bg-light nav-pills rounded nav-fill mb-3" role="tablist">
-	<li class="nav-item">
-		<a class="nav-link" data-toggle="pill" href="#nav-tab-card">
-		<i class="fa fa-credit-card"></i> Credit Card</a></li>
-	<li class="nav-item">
-		<a class="nav-link" data-toggle="pill" href="#nav-tab-bank">
-		<i class="fa fa-university"></i>  Bank Transfer</a></li>
-</ul>
-
-<div class="tab-content">
-<div class="tab-pane fade show active" id="nav-tab-card">
-	<form method="POST" action="" id="myCheckoutForm">
-        <div class="form-group owner">
-            <label for="owner">Owner</label>
-            <input type="text" name="owner" class="form-control" id="owner">
-        </div> <!-- form-group.// -->
-
-        <div class="form-group CVV">
-            <label for="cvv">CVV</label>
-            <input type="text" name="cvv" class="form-control" id="cvv">
         </div>
+        <article class="card">
+          <div class="payment">
+            <ul class="nav bg-light nav-pills rounded nav-fill mb-3" role="tablist">
+              <li class="nav-item">
+                  <a class="nav-link" data-toggle="pill" href="#nav-tab-card">
+                  <i class="fa fa-credit-card"></i> Credit Card</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" data-toggle="pill" href="#nav-tab-bank">
+                  <i class="fa fa-university"></i> Bank Transfer </a>
+              </li>
+            </ul>
+            <div class="tab-content">
+              <div class="tab-pane fade show active" id="nav-tab-card">
+                <form method="POST" action="" id="myCheckoutForm">
+                      <div class="form-group owner">
+                          <label for="owner">Owner</label>
+                          <input type="text" name="owner" class="form-control" id="owner">
+                      </div> <!-- form-group.// -->
 
-        <div class="form-group" id="card-number-field">
-            <label for="cardNumber">Card Number</label>
-            <input type="text" name="cardNumber" class="form-control" id="cardNumber">
-        </div><!-- form-group.// -->
+                      <div class="form-group CVV">
+                          <label for="cvv">CVV</label>
+                          <input type="text" name="cvv" class="form-control" id="cvv">
+                      </div>
 
-        <div class="form-group" id="expiration-date">
-            <label>Expiration Date</label>
-            <select name="expMonth">
-                <option value="01">January</option>
-                <option value="02">February </option>
-                <option value="03">March</option>
-                <option value="04">April</option>
-                <option value="05">May</option>
-                <option value="06">June</option>
-                <option value="07">July</option>
-                <option value="08">August</option>
-                <option value="09">September</option>
-                <option value="10">October</option>
-                <option value="11">November</option>
-                <option value="12">December</option>
-            </select>
-            <select name="expDay">
-                <option value="16"> 2016</option>
-                <option value="17"> 2017</option>
-                <option value="18"> 2018</option>
-                <option value="19"> 2019</option>
-                <option value="20"> 2020</option>
-                <option value="21"> 2021</option>
-                <option value="22"> 2022</option>
-                <option value="23"> 2023</option>
-            </select>
-        </div> <!-- row.// -->
-        <div class="form-group" id="credit_cards">
-            <img src="assets/images/visa.jpg" id="visa">
-            <img src="assets/images/mastercard.jpg" id="mastercard">
-            <img src="assets/images/amex.jpg" id="amex">
-        </div>
-        <div class="form-group" id="pay-now">
-            <button type="button" class="btn btn-default" id="confirm-purchase">Vérifier</button>
-        </div>
-	</form>
-</div> 
-<!-- tab-pane.// -->
-<div class="tab-pane fade show" id="nav-tab-bank">
-<p>Bank accaunt details</p>
-<dl class="param">
-  <dt>NOM DU BANK: </dt>
-  <dd><?=$bank_name;?></dd>
-</dl>
-<dl class="param">
-  <dt>RIB: </dt>
-  <dd><?=$rib;?></dd>
-</dl>
-<p><strong>Note:</strong> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua. </p>
-</div> <!-- tab-pane.// -->
-</div> <!-- tab-content .// -->
+                      <div class="form-group" id="card-number-field">
+                          <label for="cardNumber">Card Number</label>
+                          <input type="text" name="cardNumber" class="form-control" id="cardNumber">
+                      </div><!-- form-group.// -->
 
-</div> <!-- card-body.// -->
-</article> <!-- card.// -->
-
-
-	</aside> <!-- col.// -->
-</div> <!-- row.// -->
-
-</div> 
-<!--container end.//-->
-
+                      <div class="form-group" id="expiration-date">
+                          <label>Expiration Date</label>
+                          <select name="expMonth">
+                              <option value="01">January</option>
+                              <option value="02">February </option>
+                              <option value="03">March</option>
+                              <option value="04">April</option>
+                              <option value="05">May</option>
+                              <option value="06">June</option>
+                              <option value="07">July</option>
+                              <option value="08">August</option>
+                              <option value="09">September</option>
+                              <option value="10">October</option>
+                              <option value="11">November</option>
+                              <option value="12">December</option>
+                          </select>
+                          <select name="expDay">
+                              <option value="16"> 2016</option>
+                              <option value="17"> 2017</option>
+                              <option value="18"> 2018</option>
+                              <option value="19"> 2019</option>
+                              <option value="20"> 2020</option>
+                              <option value="21"> 2021</option>
+                              <option value="22"> 2022</option>
+                              <option value="23"> 2023</option>
+                          </select>
+                      </div> <!-- row.// -->
+                      <div class="form-group" id="credit_cards">
+                        <img src="assets/images/visa.jpg" id="visa">
+                        <img src="assets/images/mastercard.jpg" id="mastercard">
+                        <img src="assets/images/amex.jpg" id="amex">
+                      </div>
+                      <div class="form-group" id="pay-now">
+                          <button type="button" class="btn btn-default" id="confirm-purchase">Vérifier</button>
+                      </div>
+                </form>
+              </div> 
+              <!-- tab-pane.// -->
+              <div class="tab-pane fade show" id="nav-tab-bank">
+                <p>Bank accaunt details</p>
+                <dl class="param">
+                  <dt>NOM DU BANK: </dt>
+                  <dd><?=$bank_name;?></dd>
+                </dl>
+                <dl class="param">
+                  <dt>RIB: </dt>
+                  <dd><?=$rib;?></dd>
+                </dl>
+                <p><strong>Note:</strong> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                tempor incididunt ut labore et dolore magna aliqua. </p>
+              </div> <!-- tab-pane.// -->
+            </div> <!-- tab-content .// -->
+          </div> <!-- card-body.// -->
+        </article> <!-- card.// -->
+      </aside> <!-- col.// -->
+    </div> <!-- row.// -->
+  </div> 
+  <!--container end.//-->
 </body>
 </html>

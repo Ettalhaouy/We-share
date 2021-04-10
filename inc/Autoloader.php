@@ -9,7 +9,7 @@ function app_autoload($class)
     if(PHP_OS === 'Linux'){
         require "/opt/lampp/htdocs/We-share/classes/$class.php";
     }else{
-        require "/wamp64/www/Github/We-share/classes/$class.php";
+        require "/wamp64/www/We-share/classes/$class.php";
     }
 
 

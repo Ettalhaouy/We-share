@@ -55,7 +55,7 @@ $ads = $db->query('SELECT * FROM advertisements  WHERE id = ?', [$_GET['id']])->
 
                     function goToPay() {
                     let id =  document.getElementById("id_ads").value;
-                    let link = "http://localhost/Github/We-share/checkout.php?id=" + id;
+                    let link = "http://localhost/We-share/checkout.php?id=" + id;
                     window.open(link,"_self");
                     }
                     </script>

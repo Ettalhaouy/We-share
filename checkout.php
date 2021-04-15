@@ -145,7 +145,7 @@ if (!empty($_POST)) {
                         <img src="assets/images/amex.jpg" id="amex">
                       </div>
                       <div class="form-group" id="pay-now">
-                          <button type="button" class="btn btn-default" id="confirm-purchase">Vérifier</button>
+                          <button type="button" class="btn btn-success" id="confirm-purchase">Vérifier</button>
                       </div>
                 </form>
               </div> 

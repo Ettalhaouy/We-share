@@ -55,7 +55,7 @@ if (!empty($_POST)) {
       </div>
       
       <label for="rib" class="visually-hidden">Rib number</label>
-      <input type="text" id="rib" name="rib" class="form-control" placeholder="Numéro RIB" minlength="23" maxlength="23" required autofocus>
+      <input type="text" id="rib" name="rib" class="form-control" placeholder="Numéro RIB" minlength="24" maxlength="24" required autofocus>
 
 
       <label for="inputPassword" class="visually-hidden">Mot de passe</label>

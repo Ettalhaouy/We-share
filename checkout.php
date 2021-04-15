@@ -80,25 +80,25 @@ if (!empty($_POST)) {
     <div class="creditCardForm">
         <div class="heading">
             <img class="mb-4 rounded-circle mx-auto d-block" src="assets/images/We-Share-logo.png" alt="" width="172" height="172" style="margin-top: 30px;">
-            <h1>Confirm Purchase</h1>
+            <h1>Confirmer la donation</h1>
         </div>
         <article class="card">
           <div class="payment">
             <ul class="nav bg-light nav-pills rounded nav-fill mb-3" role="tablist">
               <li class="nav-item">
                   <a class="nav-link" data-toggle="pill" href="#nav-tab-card">
-                  <i class="fa fa-credit-card"></i> Credit Card</a>
+                  <i class="fa fa-credit-card"></i> Carte de Crédit </a>
               </li>
               <li class="nav-item">
                   <a class="nav-link" data-toggle="pill" href="#nav-tab-bank">
-                  <i class="fa fa-university"></i> Bank Transfer </a>
+                  <i class="fa fa-university"></i> Virement Bancaire </a>
               </li>
             </ul>
             <div class="tab-content">
               <div class="tab-pane fade show active" id="nav-tab-card">
                 <form method="POST" action="" id="myCheckoutForm">
                       <div class="form-group owner">
-                          <label for="owner">Owner</label>
+                          <label for="owner">Propriétaire</label>
                           <input type="text" name="owner" class="form-control" id="owner">
                       </div> <!-- form-group.// -->
 
@@ -108,25 +108,25 @@ if (!empty($_POST)) {
                       </div>
 
                       <div class="form-group" id="card-number-field">
-                          <label for="cardNumber">Card Number</label>
+                          <label for="cardNumber">Numéro de Carte</label>
                           <input type="text" name="cardNumber" class="form-control" id="cardNumber">
                       </div><!-- form-group.// -->
 
                       <div class="form-group" id="expiration-date">
-                          <label>Expiration Date</label>
+                          <label>Date d'Expiration</label>
                           <select name="expMonth">
-                              <option value="01">January</option>
-                              <option value="02">February </option>
-                              <option value="03">March</option>
-                              <option value="04">April</option>
-                              <option value="05">May</option>
-                              <option value="06">June</option>
-                              <option value="07">July</option>
-                              <option value="08">August</option>
-                              <option value="09">September</option>
-                              <option value="10">October</option>
-                              <option value="11">November</option>
-                              <option value="12">December</option>
+                              <option value="01">Janvier</option>
+                              <option value="02">Février</option>
+                              <option value="03">Mars</option>
+                              <option value="04">Avril</option>
+                              <option value="05">Mai</option>
+                              <option value="06">Juin</option>
+                              <option value="07">Juillet</option>
+                              <option value="08">Août</option>
+                              <option value="09">Septembre</option>
+                              <option value="10">Octobre</option>
+                              <option value="11">Novembre</option>
+                              <option value="12">Décembre</option>
                           </select>
                           <select name="expDay">
                               <option value="16"> 2016</option>
@@ -145,23 +145,27 @@ if (!empty($_POST)) {
                         <img src="assets/images/amex.jpg" id="amex">
                       </div>
                       <div class="form-group" id="pay-now">
-                          <button type="button" class="btn btn-default" id="confirm-purchase">Vérifier</button>
+                          <button type="button" class="btn btn-success" id="confirm-purchase">Vérifier</button>
                       </div>
                 </form>
               </div> 
               <!-- tab-pane.// -->
               <div class="tab-pane fade show" id="nav-tab-bank">
-                <p>Bank accaunt details</p>
+                <br>
+                <center><strong>Détails du Compte Bancaire:</strong></center>
+                <br>
                 <dl class="param">
-                  <dt>NOM DU BANK: </dt>
+                  <dt>Nom du Bank: </dt>
                   <dd><?=$bank_name;?></dd>
                 </dl>
                 <dl class="param">
                   <dt>RIB: </dt>
                   <dd><?=$rib;?></dd>
                 </dl>
-                <p><strong>Note:</strong> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                tempor incididunt ut labore et dolore magna aliqua. </p>
+                <p><strong>Note:</strong> Afin que vous puissiez finaliser l'étape de donation par virement bancaire merci de procéder la page de vérification de donation en cliquant sur le bouton ci-dessous.</p>
+                <div class="form-group" id="pay-now">
+                <a href="verifie_donation.php" style="color:white; text-decoration:none;"><button type="button" class="btn btn-default" id="confirm-purchase">Vérifier donation</button></a>
+                </div>
               </div> <!-- tab-pane.// -->
             </div> <!-- tab-content .// -->
           </div> <!-- card-body.// -->

@@ -33,7 +33,7 @@ $ads = $db->query('SELECT * FROM advertisements  WHERE id = ?', [$_GET['id']])->
 <body>
     <div class="container">
         <div class="card mb-3  container">
-            <img  style="margin: 20px 0px;" src="<?php echo $ads->photo; ?>" class="img card-img-top" alt="...">
+            <img  style="margin: 20px 0px;" height="600" src="<?php echo $ads->photo; ?>" class="img card-img-top" alt="...">
             <div class="card-body">
             <h3 class="card-title"><?php echo $ads->title; ?></h3>
             <p class="card-text"><small class="text-muted"><?php echo $ads->date; ?></small></p>

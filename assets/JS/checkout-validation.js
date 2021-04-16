@@ -49,11 +49,11 @@ $(function() {
         var isCvvValid = $.payform.validateCardCVC(CVV.val());
 
         if(owner.val().length < 5)
-            alert("Wrong owner name");
+            alert("Nom de propriétaire");
         else if (!isCardValid) 
-            alert("Wrong card number");
+            alert("Numéro de carte erroné ");
         else if (!isCvvValid) 
-            alert("Wrong CVV");
+            alert("CVV incorrect");
         else {
             
             let element = document.createElement("input");

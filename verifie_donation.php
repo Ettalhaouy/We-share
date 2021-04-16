@@ -73,7 +73,7 @@ if(!empty($_POST) && !empty($_FILES)){
         <header class="text-white text-center">
             <h1 class="display-4">Vérifier votre donation</h1>
             <p class="lead mb-0">Merci d'uploader votre reçu de virement bancaire pour vérifier votre donation</p><br><br>
-            <input type="number" class="form-control" id="amountInput" name="donationAmount" placeholder="Enter Amount">
+            <input type="number" class="form-control" id="amountInput" name="donationAmount" placeholder="La somme de don">
             <br>
             <select id="Appels" name="Appels" class="form-select">
                     <option selected>Sélectionner l'appel à don concernée</option>
@@ -92,9 +92,9 @@ if(!empty($_POST) && !empty($_FILES)){
                 <!-- Upload image input-->
                 <div class="input-group mb-3 px-2 py-2 rounded-pill bg-white shadow-sm">
                     <input id="upload" type="file" onchange="readURL(this);" name="img" class="form-control border-0">
-                    <label id="upload-label" for="upload" class="font-weight-light text-muted">Choose file</label>
+                    <label id="upload-label" for="upload" class="font-weight-light text-muted">Fichier</label>
                     <div class="input-group-append">
-                        <label for="upload" class="btn btn-light m-0 rounded-pill px-4"> <i class="fa fa-cloud-upload mr-2 text-muted"></i><small class="text-uppercase font-weight-bold text-muted">Choose file</small></label>
+                        <label for="upload" class="btn btn-light m-0 rounded-pill px-4"> <i class="fa fa-cloud-upload mr-2 text-muted"></i><small class="text-uppercase font-weight-bold text-muted">Choisir un fichier</small></label>
                     </div>
                 </div>
             </div>

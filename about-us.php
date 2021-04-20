@@ -4,23 +4,6 @@
   require 'inc/Autoloader.php';
   ?>
   <?php include 'layouts/private_header.html'; ?>
-    <head>
-        <link rel="apple-touch-icon" sizes="180x180" href="../assets/images/apple-touch-icon.png">
-        <link rel="icon" type="image/png" sizes="32x32" href="../assets/images/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/favicon-16x16.png">
-        <link rel="mask-icon" href="../assets/images/safari-pinned-tab.svg" color="#5bbad5">
-        <meta name="msapplication-TileColor" content="#da532c">
-        <meta name="theme-color" content="#ffffff">
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="">
-        <meta name="author" content="Noureddine Ettalhaouy, Ismail Chakrane , Faysal Belkhchicha ">
-        <title>About Us</title>
-        <!-- Bootstrap core CSS -->
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/css/bootstrap.min.css" integrity="sha384-DhY6onE6f3zzKbjUPRc2hOzGAdEf4/Dz+WJwBvEYL/lkkIsI3ihufq9hk9K4lVoK" crossorigin="anonymous">
-        <link rel="stylesheet" href="assets/styles/Aboutus.css">
-    </head>     
-<body>
     <div class="container">
         <div class="row justify-content-center text-center">
           <div class="col-10 py-5">
@@ -94,7 +77,7 @@
                     <textarea type="text" class="form-control col-md-12"  id="inputMessage" placeholder="type your message here !"></textarea>
                 </div>
         
-                <button style="" type="submit" class="btn btn-primary">Send message</button>
+                <button  type="submit" class="btn btn-primary">Send message</button>
             </form>
           
         </div>

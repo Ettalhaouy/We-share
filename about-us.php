@@ -4,7 +4,7 @@
   require 'inc/Autoloader.php';
   ?>
   <?php include 'layouts/private_header.html'; ?>
-    <div class="container">
+    w<div class="container">
         <div class="row justify-content-center text-center">
           <div class="col-10 py-5">
             <img src="assets/images/We-Share-logo.png" class="img-fluid rounded-circle" style="width:300px ; height : 300px;"><br><br>
@@ -16,7 +16,7 @@
         </div>
       </div>
         <div class="container">
-            <div class="row">
+            <div class="ro">
                 <div class="col-12 text-center">
                     <div class="section-title mb-4 pb-2">
                         <h2>Meet Our Team</h2>
@@ -25,8 +25,8 @@
             </div><!--end row-->
         
             <div class="row">
-                <div class="col-md-6 col-12 mt-4 pt-2">
-                    <div class="team-list position-relative overflow-hidden shadow rounded">
+                <div class="col-md-6 col-10 mt-5 pt-2">
+                    <div class="team-list position-relative overflow-hidden float-right shadow rounded">
                         <img src="assets/images/me2.jpeg" class="img-fluid float-left" alt="">
                         <div class="content float-right p-4">
                             <h5 class="title mb-0">Martin Dongre</h5>
@@ -36,7 +36,7 @@
                     </div>                        
                 </div><!--end col-->
                 
-                <div class="col-md-6 col-12 mt-4 pt-2">
+                <div class="col-md-6 col-10 mt-5 pt-2">
                     <div class="team-list position-relative overflow-hidden shadow rounded">
                         <img src="assets/images/me2.jpeg" class="img-fluid float-left" alt="">
                         <div class="content float-right p-4">

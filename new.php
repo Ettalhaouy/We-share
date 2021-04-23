@@ -38,7 +38,7 @@ if (!empty($_POST) && !empty($_FILES)) {
 ?>
 
 <?php include 'layouts/login_header.html';?>
-    <title>Nouvelle annonce | We-Share</title>
+    <title>Nouvel Appel | We-Share</title>
     <style>
         html,body {
         height: 100%;
@@ -110,7 +110,7 @@ if (!empty($_POST) && !empty($_FILES)) {
 <main class="form-signin-signup">
   <form action="" method="POST" enctype="multipart/form-data">
     <img class="mb-4 rounded-circle" src="assets/images/We-Share-logo.png" alt="" width="72" height="57">
-    <h1 class="h3 mb-3 fw-normal">Nouvelle Annonce</h1>
+    <h1 class="h3 mb-3 fw-normal">Nouvel Appel</h1>
 
     <!-- errors controle -->
     <?php if (!empty($errors)): ?>

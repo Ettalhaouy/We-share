@@ -12,7 +12,7 @@ if(!empty($_POST) && !empty($_FILES)){
         $name_extension = strrchr($name_file, ".");
         $extensions_autorisation = array('.png', '.PNG', '.jpg', '.JPG', '.jpeg', '.JPEG');
         $file_tmp_name = $_FILES['img']['tmp_name'];
-        $file_dest = 'donations_verfications/' . $name_file;
+        $file_dest = 'donations/' . $name_file;
         $date = date("Y-m-d H:i:s");
         if($Auth->VirementVerification($db,$date,$_POST['Appels'],$_POST['donationAmount'],$name_extension,$extensions_autorisation,$file_dest,$file_tmp_name)){
 

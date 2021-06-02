@@ -87,7 +87,7 @@ if (!empty($_POST)) {
             <ul class="nav bg-light nav-pills rounded nav-fill mb-3" role="tablist">
               <li class="nav-item">
                   <a class="nav-link" data-toggle="pill" href="#nav-tab-card">
-                  <i class="fa fa-credit-card"></i> Carte de Crédit </a>
+                  <i class="fa fa-credit-card"></i> Carte Bankaire </a>
               </li>
               <li class="nav-item">
                   <a class="nav-link" data-toggle="pill" href="#nav-tab-bank">

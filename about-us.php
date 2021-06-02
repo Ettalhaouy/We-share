@@ -44,7 +44,7 @@
                 
     <div class="col-4 mx-auto">
         <div class="team-list position-relative overflow-hidden shadow rounded">
-            <center><img src="assets/images/me2.jpeg" class="img-fluid float-left" alt=""></center>
+            <center><img src="assets/images/ismail.jpg" class="img-fluid float-center" style="max-height: 350px;" alt=""></center>
             <div class="content float-right p-4">
                 <h5 class="title mb-0">Chakrane Ismail</h5>
                 <small class="text-muted">Développeur Backend-End</small>

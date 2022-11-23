@@ -23,8 +23,6 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/css/bootstrap.min.css"
-    integrity="sha384-DhY6onE6f3zzKbjUPRc2hOzGAdEf4/Dz+WJwBvEYL/lkkIsI3ihufq9hk9K4lVoK" crossorigin="anonymous">
 
 </head>
 
@@ -41,28 +39,28 @@
     </a>
     <div class="navbar-links">
       <ul>
-        <li><a href="home.php">Home</a></li>
-        <li><a href="my.php">Mes Annonces</a></li>
-        <li><a href="logout.php">Quittez</a></li>
-        <li id="user-li"><a href="#" id="user">
-            <?php echo $account->login;?>
-          </a></li>
-        <style>
-          #user {
-            background-color: white;
-            color: #0069D9;
-          }
-
-          #user-li {
-            background-color: white;
-            margin-right: .5rem;
-            margin-left: .5rem;
-          }
-
-          #user-li :hover {
-            background-color: white;
-          }
-        </style>
+        <?php if (!empty(Session::getInstance()->read('id'))): ?>
+        <?php 
+          $session_id = Session::getInstance()->read('id'); 
+          $account = $db->query('SELECT login FROM organisations  WHERE id = ?', [$session_id])->fetch();
+        ?>
+        <li><a href="index.php">Principale</a></li>
+        <li><a href="my.php">Mes Appels aux dons</a></li>
+        <li><a href="logout.php">Quitter</a></li>
+        <li id="user-li">
+            <a href="#" id="user">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
+              <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+            </svg>
+              <?php echo $account->login;?>
+            </a>
+        </li>
+        <?php else: ?>
+        <li><a href="index.php">Principale</a></li>
+        <li><a href="about-us.php">À propos de nous</a></li>
+        <li><a href="verifie_donation.php">Vérifier une donation</a></li>
+        <li><a href="signin.php">Espace Associations</a></li>
+        <?php endif;?>
       </ul>
     </div>
   </nav>

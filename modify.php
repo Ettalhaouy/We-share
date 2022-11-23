@@ -25,20 +25,17 @@ if (!empty($_POST['description'])) {
 }
 
 if (!empty($_FILES['img'])) {
-
+    $Auth = new Auth;
     $name_file = $_FILES['img']['name'];
     $name_extension = strrchr($name_file, ".");
-    $extensions_autorisation = array('.png', '.PNG', '.jpg', '.JPG');
+    $extensions_autorisation = array('.png', '.PNG', '.jpg', '.JPG','.jpeg', '.JPEG');
     $file_tmp_name = $_FILES['img']['tmp_name'];
     $file_dest = 'uploads/' . $name_file;
 
-    if (in_array($name_extension, $extensions_autorisation)) {
-        if (move_uploaded_file($file_tmp_name, $file_dest)) {
-            $insert = $db->query("UPDATE advertisements SET photo=?,date=? WHERE id=?", [$file_dest, $date, $id]);
-        }
+    if($Auth->ModifyAnnounceData($db,$name_extension,$file_tmp_name,$file_dest,$extensions_autorisation,$date,$id)){
         $status = true;
     } else {
-        $errors["img"] = "Pour l'image seuls les extensions PNG ou JPEG sont autorisées";
+        $errors["img"] = "Pour l'image seuls les extensions PNG , JPG ou JPEG sont autorisées";
     }
 
 }
@@ -51,7 +48,7 @@ if ($status) {
 ?>
 
   <?php include 'layouts/login_header.html';?>
-    <title>Modifier Annonce | We-Share</title>
+    <title>Modifier L'Appel | We-Share</title>
     <style>
         html,body {
         height: 100%;
@@ -123,17 +120,15 @@ if ($status) {
 <main class="form-signin-signup">
   <form action="" method="POST" enctype="multipart/form-data">
     <img class="mb-4 rounded-circle" src="assets/images/We-Share-logo.png" alt="" width="72" height="57">
-    <h1 class="h3 mb-3 fw-normal">Modifier L'annonce</h1>
+    <h1 class="h3 mb-3 fw-normal">Modifier L'Appel</h1>
 
     <!-- errors controle -->
     <?php if (!empty($errors)): ?>
       <div class="alert alert-danger">
         <p>Votre modification a connu des problèmes lors de la soumission :</p>
         <?php foreach ($errors as $error): ?>
-          <ul>
-            <li><?=$error;?></li>
+            <div><?=$error;?></div>
           <?php endforeach;?>
-          </ul>
       </div>
     <?php endif;?>
 

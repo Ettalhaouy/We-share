@@ -1,28 +1,25 @@
-
 <?php
 require 'inc/Autoloader.php';
 
+
 if (!empty($_POST)) {
+    //connect to db
     $db = App::getDatabase();
     $validator = new Validator($_POST);
 
-    if ($_POST['accountType'] == "Type de compte...") {
-        Session::getInstance()->setFlash('danger', 'Vous devez préciser le type de compte');
-        App::redirect('signin.php');
-    }
-
-    if ($validator->notVerified($db, 'email', $_POST['accountType'])) {
+    //verifications
+    if ($validator->notVerified($db, 'email')) {
         Session::getInstance()->setFlash('danger', 'Compte non vérifié ou invalid');
         App::redirect('signin.php');
     }
-    if ($validator->accountValid('email', 'password', $db, $_POST['accountType'])) {
+    if ($validator->accountValid('email', 'password', $db)) {
 
-        $user = $validator->accountValid('email', 'password', $db, $_POST['accountType']);
-        Session::getInstance()->write('genre', $_POST['accountType']);
+        $user = $validator->accountValid('email', 'password', $db);
+        Session::getInstance()->write('genre', "2");
         Session::getInstance()->write('auth', $user);
         Session::getInstance()->write('id', $user->id);
         Session::getInstance()->setFlash('success', "Bienvenue " . $user->login . " !");
-        App::redirect('home.php');
+        App::redirect('index.php');
     } else {
         Session::getInstance()->setFlash('danger', 'Email, mot de passe ou type de compte incorrecte');
         App::redirect('signin.php');
@@ -46,7 +43,9 @@ if (!empty($_POST)) {
     <!-- flash controle -->
     <?php if (Session::getInstance()->hasFlashes()): ?>
      <?php foreach (Session::getInstance()->getFlashes() as $type => $message): ?>
-       <div class="alert alert-<?=$type;?>"><li><?=$message;?> </li></div>
+       <div class="alert alert-<?=$type;?>">
+          <div><?=$message;?></div>
+       </div>
      <?php endforeach;?>
    <?php endif;?>
 
@@ -59,15 +58,8 @@ if (!empty($_POST)) {
     </div>
 
     <label for="inputPassword"  class="visually-hidden">Mot de passe</label>
-    <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Mot de passe" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required>
+    <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Mot de passe" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required>
 
-    <div class="input-group mb-3">
-      <select class="form-select" id="inputAcountType" name="accountType" required>
-        <option selected hidden >Type de compte...</option>
-        <option value="1">Personnel</option>
-        <option value="2">Organisationnel</option>
-      </select>
-    </div>
 
     <div id="message" class="col-md-auto">
       <h6>Password must contain the following:</h6>
@@ -77,10 +69,10 @@ if (!empty($_POST)) {
       <p id="length" class="invalid"><b>Minimum 8 characters</b></p>
     </div>
     
-    <button class="w-100 btn btn-lg btn-primary" type="submit">Se connecter </button>
+    <button class="w-100 btn btn-lg btn-primary" type="submit">Se connecter </button><br>
+    <a href="signup.php" style="margin-top:20px;">S'inscrire</a>
     <p class="mt-5 mb-3 text-muted">&copy; We Share 2021</p>
   </form>
 </main>
-<script src="assets/JS/form-validation.js"></script>
   </body>
 </html>

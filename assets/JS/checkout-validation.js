@@ -48,15 +48,19 @@ $(function() {
         var isCardValid = $.payform.validateCardNumber(cardNumber.val());
         var isCvvValid = $.payform.validateCardCVC(CVV.val());
 
-        if(owner.val().length < 5){
-            alert("Wrong owner name");
-        } else if (!isCardValid) {
-            alert("Wrong card number");
-        } else if (!isCvvValid) {
-            alert("Wrong CVV");
-        } else {
-            // Everything is correct. Add your form submission code here.
-            alert("Everything is correct");
+        if(owner.val().length < 5)
+            alert("Nom de propriétaire");
+        else if (!isCardValid) 
+            alert("Numéro de carte erroné ");
+        else if (!isCvvValid) 
+            alert("CVV incorrect");
+        else {
+            
+            let element = document.createElement("input");
+            element.setAttribute("type", "submit");
+            element.setAttribute("value", "Confirmer");
+            element.setAttribute("class", "btn btn-default");
+            document.getElementById("pay-now").appendChild(element);
         }
     });
 });

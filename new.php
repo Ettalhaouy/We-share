@@ -10,29 +10,25 @@ if (empty(Session::getInstance()->read('id'))) {
 if (!empty($_POST) && !empty($_FILES)) {
     $db = App::getDatabase();
     $errors = [];
+
     if (!empty($_POST['title']) && !empty($_POST['description']) && !empty($_FILES['img'])) {
-
+        $Auth = new Auth;
         $session_id = Session::getInstance()->read('id');
-
         $name_file = $_FILES['img']['name'];
         $name_extension = strrchr($name_file, ".");
-        $extensions_autorisation = array('.png', '.PNG', '.jpg', '.JPG');
+        $extensions_autorisation = array('.png', '.PNG', '.jpg', '.JPG', '.jpeg', '.JPEG');
         $file_tmp_name = $_FILES['img']['tmp_name'];
         $file_dest = 'uploads/' . $name_file;
         $date = date("Y-m-d H:i:s");
 
-        if (in_array($name_extension, $extensions_autorisation)) {
-            if (move_uploaded_file($file_tmp_name, $file_dest)) {
-
-                $insert = $db->query("INSERT INTO advertisements (title, photo, Description,date,id_organisaton)
-        VALUES (?,?,?,?,?)", [$_POST['title'], $file_dest, $_POST['description'], $date, $session_id]);
+        if($Auth->insertNewAnnounceData($db,$date,$session_id,$name_extension,$extensions_autorisation,$file_dest,$file_tmp_name)){
 
                 Session::getInstance()->setFlash('success', 'L\'Annonce a été crée avec succés');
                 App::redirect('my.php');
 
             }
-        } else {
-            $errors['img'] = "Pour l'image seuls les extensions PNG ou JPEG sont autorisées";
+            else {
+            $errors['img'] = "Pour l'image seuls les extensions PNG , JPG ou JPG sont autorisées";
         }
     } else {
         $errors[] = "Tous les champs doivent être remplis";
@@ -42,7 +38,7 @@ if (!empty($_POST) && !empty($_FILES)) {
 ?>
 
 <?php include 'layouts/login_header.html';?>
-    <title>Nouvelle annonce | We-Share</title>
+    <title>Nouvel Appel | We-Share</title>
     <style>
         html,body {
         height: 100%;
@@ -114,17 +110,16 @@ if (!empty($_POST) && !empty($_FILES)) {
 <main class="form-signin-signup">
   <form action="" method="POST" enctype="multipart/form-data">
     <img class="mb-4 rounded-circle" src="assets/images/We-Share-logo.png" alt="" width="72" height="57">
-    <h1 class="h3 mb-3 fw-normal">Nouvelle Annonce</h1>
+    <h1 class="h3 mb-3 fw-normal">Nouvel Appel</h1>
 
     <!-- errors controle -->
     <?php if (!empty($errors)): ?>
       <div class="alert alert-danger">
         <p>Votre nouvelle annonce a connu des problèmes lors de la création :</p>
         <?php foreach ($errors as $error): ?>
-          <ul>
-            <li><?=$error;?></li>
+            <div><?=$error;?></div>
           <?php endforeach;?>
-          </ul>
+
       </div>
     <?php endif;?>
 

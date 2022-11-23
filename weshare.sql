@@ -2,10 +2,10 @@
 -- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Feb 24, 2021 at 01:23 PM
+-- Host: 127.0.0.1
+-- Generation Time: Jun 04, 2021 at 04:21 PM
 -- Server version: 10.4.14-MariaDB
--- PHP Version: 7.2.33
+-- PHP Version: 7.4.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -42,7 +42,12 @@ CREATE TABLE `advertisements` (
 --
 
 INSERT INTO `advertisements` (`id`, `title`, `photo`, `Description`, `nb_Donation`, `date`, `id_organisaton`) VALUES
-(1, 'Appel aux dons pour creuser des puits dans les zones rurales du grand atlas', 'uploads/annonce.jpg', 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. \r\nPlaceat dolorum odio sed quos provident nihil aliquid commodi beatae cum obcaecati facere tempora sapiente expedita deserunt, \r\nitaque voluptatem minima amet. Molestiae. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Amet error eaque voluptates voluptatibus, ducimus saepe incidunt officia odio enim voluptate corporis. Reprehenderit laudantium quaerat, beatae nobis ex, recusandae facilis sit hic corrupti temporibus perspiciatis at quam error corporis architecto accusamus iusto voluptates molestias ea animi obcaecati dolorum maxime quasi soluta! Et dolore facere deserunt asperiores veniam molestias magnam consequatur! Fuga excepturi, \r\nlaudantium fugit voluptatem praesentium repellendus rerum nihil sed illum voluptatum suscipit veniam eius dolores nesciunt voluptates quaerat magni cum.\r\n', 0, '2021-02-21 00:00:00', 4);
+(2, 'Exemple 1 ', 'uploads/external-content.duckduckgo.com.png', 'dictumst quisque sagittis purus sit amet volutpat consequat mauris nunc congue nisi vitae suscipit tellus mauris a diam maecenas sed enim ut sem viverra aliquet eget sit amet tellus cras adipiscing enim eu turpis egestas pretium aenean pharetra magna ac placerat vestibulum lectus mauris ultrices eros in cursus turpis massa tincidunt dui ut ornare lectus sit amet est placerat in egestas erat imperdiet sed euismod nisi porta lorem mollis aliquam ut porttitor leo a diam sollicitudin tempor id eu nisl    ', 400, '2021-04-08 00:04:16', 5),
+(3, 'Exemple 2', 'uploads/annonce.jpg', 'et magnis dis parturient montes nascetur ridiculus mus mauris vitae ultricies leo integer malesuada nunc vel risus commodo viverra maecenas accumsan lacus vel facilisis volutpat est velit egestas dui id ornare arcu odigntkyg rhjg too ut sem nulla pharetra diam sit amet nisl suscipit adipiscing bibendum est ultricies integer quis auctor elit sed vulputate mi sit amet mauris commodo quis imperdiet massa tincidunt nunc pulvinar sapien et ligula ullamcorper malesuada proin libero nunc consequat interdum varius sit amet mattis vulputate enim nulla        ', 100, '2021-05-31 19:54:44', 4),
+(4, 'Exemple 3', 'uploads/external-content.duckduckgo.com.png', 'dictumst quisque sagittis purus sit amet volutpat consequat mauris nunc congue nisi vitae suscipit tellus mauris a diam maecenas sed enim ut sem viverra aliquet eget sit amet tellus cras adipiscing enim eu turpis egestas pretium aenean pharetra magna ac placerat vestibulum lectus mauris ultrices eros in cursus turpis massa tincidunt dui ut ornare lectus sit amet est placerat in egestas erat imperdiet sed euismod nisi porta lorem mollis aliquam ut porttitor leo a diam sollicitudin tempor id eu nisl    ', 500, '2021-04-08 00:04:24', 5),
+(5, 'Exemple 4', 'uploads/annonce.jpg', 'purus faucibus ornare suspendisse sed nisi lacus sed viverra tellus in hac habitasse platea dictumst vestibulum rhoncus est pellentesque elit ullamcorper dignissim cras tincidunt lobortis feugiat vivamus at augue eget arcu dictum varius duis at consectetur lorem donec massa sapien faucibus et molestie ac feugiat sed lectus vestibulum mattis ullamcorper velit sed ullamcorper morbi tincidunt ornare massa eget egestas purus viverra accumsan in nisl nisi scelerisque eu ultrices vitae auctor eu augue ut lectus arcu bibendum at varius vel pharetra', 200, '2021-04-07 20:12:31', 4),
+(6, 'Exemple 5', 'uploads/external-content.duckduckgo.com.png', 'dictumst quisque sagittis purus sit amet volutpat consequat mauris nunc congue nisi vitae suscipit tellus mauris a diam maecenas sed enim ut sem viverra aliquet eget sit amet tellus cras adipiscing enim eu turpis egestas pretium aenean pharetra magna ac placerat vestibulum lectus mauris ultrices eros in cursus turpis massa tincidunt dui ut ornare lectus sit amet est placerat in egestas erat imperdiet sed euismod nisi porta lorem mollis aliquam ut porttitor leo a diam sollicitudin tempor id eu nisl    ', 30, '2021-04-08 00:04:30', 5),
+(19, 'Exemple 6', 'uploads/annonce.jpg', 'dictumst quisque sagittis purus sit amet volutpat consequat mauris nunc congue nisi vitae suscipit tellus mauris a diam maecenas sed enim ut sem viverra aliquet eget sit amet tellus cras adipiscing enim eu turpis egestas pretium aenean pharetra magna ac placerat vestibulum lectus mauris ultrices eros in cursus turpis massa tincidunt dui ut ornare lectus sit amet est placerat in egestas erat imperdiet sed euismod nisi porta lorem mollis aliquam ut porttitor leo a diam sollicitudin tempor id eu nisl ', 0, '2021-05-31 19:57:53', 4);
 
 -- --------------------------------------------------------
 
@@ -52,10 +57,25 @@ INSERT INTO `advertisements` (`id`, `title`, `photo`, `Description`, `nb_Donatio
 
 CREATE TABLE `donations` (
   `id_events` int(11) NOT NULL,
-  `id_user` int(11) NOT NULL,
-  `amount` int(11) NOT NULL,
+  `amount` double NOT NULL,
   `Date` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `donations`
+--
+
+INSERT INTO `donations` (`id_events`, `amount`, `Date`) VALUES
+(4, 200, '2021-05-29 16:32:33'),
+(4, 300, '2021-05-29 16:35:04'),
+(2, 100, '2021-05-31 20:04:33'),
+(3, 100, '2021-06-02 20:36:24'),
+(5, 100, '2021-06-02 20:37:00'),
+(5, 100, '2021-06-02 20:37:54'),
+(2, 100, '2021-06-02 20:44:34'),
+(2, 100, '2021-06-03 10:49:56'),
+(2, 100, '2021-06-03 11:21:46'),
+(6, 30, '2021-06-04 16:07:09');
 
 -- --------------------------------------------------------
 
@@ -79,39 +99,29 @@ INSERT INTO `organisations` (`id`, `login`, `email`, `password`, `verified`) VAL
 (1, 'Afoulki', 'Afoulki@contact.com', '$2y$10$5uG2zopeEyVBB4r.YUyux.KZnsOnkiNQjQpHAXoacV2saQABM9ICi', 1),
 (2, 'MekkiL', 'MekkiL@contact.com', '$2y$10$6yi3S3VVE16UjYEPpFm2muYMvSJksj/3n9.Up49isoSVemhsoifnu', 1),
 (3, 'Soleil bleu', 'soleilbleu@contact.com', '$2y$10$E/Z/KyxaLMuqkFA4FdRW0ONxGGVk991ZQRu3sIRyQqX0T6cmKcZVW', 1),
-(4, 'ATAA', 'ATAA@contact.com', '$2y$10$rQE.tt0WmzTcd5WHjPvRQuqlaQW8qIViWkfkSEtbBeQCC1lsLOpBO', 1),
+(4, 'ATAA', 'ATAA@contact.com', '$2a$10$t4F9FZrP3GB1WHGLGbqxQu8iCFuyYdf0ca5b9U9irccHhMuVo9r1S', 1),
 (5, 'Coeur Maroc', 'coeurmaroc@contact.com', '$2y$10$kdFIuxLEnamAwGJOSK0DUOshEymfZivaimtTPzYiwOeBSHMA7WgL2', 1),
 (6, 'Enfants Bâdiya', 'enfantsbadiya@contact.com', '$2y$10$KKvC.wS3P5Wy/dRapa.3Pe9CojC0oRyz7peqjgiqN7FftIoaXOqAm', 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `payInfo`
+-- Table structure for table `payinfo`
 --
 
-CREATE TABLE `payInfo` (
+CREATE TABLE `payinfo` (
   `id` int(11) NOT NULL,
-  `payMethod` varchar(255) NOT NULL DEFAULT 'Credit Card',
-  `NameCard` varchar(255) NOT NULL DEFAULT 'Cardholder Name',
-  `NumberCard` varchar(255) NOT NULL DEFAULT 'XXXX-XXXX-XXXX-XXXX',
-  `Expiration` varchar(255) NOT NULL DEFAULT 'mm/AA',
-  `CCV` varchar(255) NOT NULL DEFAULT 'XXX',
-  `id_user` int(11) NOT NULL
+  `RIB` varchar(24) DEFAULT NULL,
+  `id_org` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- --------------------------------------------------------
-
 --
--- Table structure for table `users`
+-- Dumping data for table `payinfo`
 --
 
-CREATE TABLE `users` (
-  `id` int(11) NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `login` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  `nb_donation` int(11) NOT NULL DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+INSERT INTO `payinfo` (`id`, `RIB`, `id_org`) VALUES
+(1, '19078021162172142001186', 4),
+(2, '17806002870411187576184', 5);
 
 --
 -- Indexes for dumped tables
@@ -128,7 +138,6 @@ ALTER TABLE `advertisements`
 -- Indexes for table `donations`
 --
 ALTER TABLE `donations`
-  ADD KEY `id_user` (`id_user`),
   ADD KEY `id_events` (`id_events`);
 
 --
@@ -138,17 +147,11 @@ ALTER TABLE `organisations`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `payInfo`
+-- Indexes for table `payinfo`
 --
-ALTER TABLE `payInfo`
+ALTER TABLE `payinfo`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `id_user` (`id_user`);
-
---
--- Indexes for table `users`
---
-ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`);
+  ADD KEY `id_org` (`id_org`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -158,25 +161,19 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `advertisements`
 --
 ALTER TABLE `advertisements`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `organisations`
 --
 ALTER TABLE `organisations`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
--- AUTO_INCREMENT for table `payInfo`
+-- AUTO_INCREMENT for table `payinfo`
 --
-ALTER TABLE `payInfo`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
-
---
--- AUTO_INCREMENT for table `users`
---
-ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+ALTER TABLE `payinfo`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Constraints for dumped tables
@@ -192,14 +189,13 @@ ALTER TABLE `advertisements`
 -- Constraints for table `donations`
 --
 ALTER TABLE `donations`
-  ADD CONSTRAINT `donations_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `users` (`id`),
   ADD CONSTRAINT `donations_ibfk_2` FOREIGN KEY (`id_events`) REFERENCES `advertisements` (`id`);
 
 --
--- Constraints for table `payInfo`
+-- Constraints for table `payinfo`
 --
-ALTER TABLE `payInfo`
-  ADD CONSTRAINT `payInfo_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `users` (`id`);
+ALTER TABLE `payinfo`
+  ADD CONSTRAINT `payInfo_ibfk_1` FOREIGN KEY (`id_org`) REFERENCES `organisations` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
